@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mmJavaMinimalista:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mmJavaMinimalista="http://uniandes.edu.co/mmJavaMinimalista" name="">
+  <rootPackage name="co.edu.uniandes.sqlcrud">
+    <subPackages name="src">
+      <subPackages name="entities">
+        <classes name="Carrito">
+          <attributes name="id"/>
+        </classes>
+        <classes name="Cliente"/>
+      </subPackages>
+      <subPackages name="test">
+        <classes name="CarritoTest"/>
+        <classes name="ClienteTest"/>
+      </subPackages>
+      <subPackages name="entitiesmanager">
+        <classes name="ManejadorPersistencia"/>
+      </subPackages>
+    </subPackages>
+  </rootPackage>
+</mmJavaMinimalista:Project>
