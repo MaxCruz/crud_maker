@@ -1,0 +1,40 @@
+//Definicion de operaciones que sirven para el egl saveSQLtoJava
+operation dirGenerado(): String{  
+   return "../../generado/";
+}
+
+operation dirStaticFiles():String{
+ return "../../staticFiles/";
+}
+
+operation dirProyecto(): String{  
+   return dirGenerado() + "co.edu.uniandes.sqlcrud/";
+}
+
+operation dirSource(): String {
+	return dirProyecto()+"src/";
+}
+
+operation dirMundo(): String {
+	return dirSource()+"entities/";
+}
+
+operation dirTest(): String {
+	return dirSource()+"test/";
+}
+
+operation dirPomXML(): String {
+	return dirProyecto();
+}
+
+operation dirPersistenceXML(): String{
+	return dirSource()+"META-INF/";
+}
+
+operation dirProject(): String {
+	return dirProyecto();
+}
+
+operation dirClassPath(): String {
+	return dirProyecto();
+}
