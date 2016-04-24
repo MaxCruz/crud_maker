@@ -1,0 +1,40 @@
+pre {
+  "Running ETL".println();
+}
+
+/**
+* This rule is the starting point of the transformation, this map DataBase
+* to Project. We will launch the definition of the rootPackage and dataType
+* relation throught the equivalent function to  
+*/
+rule DataBase2Project
+	transform s : sql!DataBase
+	to t : java!Project {
+		t.name = "Crud";
+		
+		// This package storage the entity mapping
+		var entitiesPackage = new java!Package;
+		entitiesPackage.name = "entities";
+		entitiesPackage.classes = s.table.equivalent();
+		t.packages.add(entitiesPackage);
+		
+		// This package manages the persistence
+		var entitiesPackage = new java!Package;
+		entitiesPackage.name = "marketplace";
+		t.packages.add(entitiesPackage);
+		
+		// This package storage the unit tests for entities
+		var testPackage = new java!Package;
+		testPackage.name = "test.java";
+		t.packages.add(testPackage);
+		
+	} 
+	
+@lazy
+rule Table2Class
+	transform s : sql!Table
+	to t : java!Class {
+		t.name = s.name;
+		t.visibility = java!Visibility#public;
+	}
+	

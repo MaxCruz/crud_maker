@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<mmJavaMinimalista:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mmJavaMinimalista="http://uniandes.edu.co/mmJavaMinimalista" name="Crud">
+  <packages name="entities">
+    <classes name="Client"/>
+    <classes name="Producto"/>
+    <classes name="Carrito"/>
+    <classes name="CarritoItem"/>
+    <classes name="Item"/>
+  </packages>
+  <packages name="marketplace"/>
+  <packages name="test.java"/>
+</mmJavaMinimalista:Project>
