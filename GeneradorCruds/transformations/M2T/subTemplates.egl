@@ -1,0 +1,103 @@
+[%	
+import "./operations.eol";
+%]
+[** SubTemplate para declarar una clase**]
+[% @template
+operation Class declaration() { %]
+[%=self.visibility%] class [%=self.name%]
+[% } %]
+
+[** SubTemplate para declarar un atributo**]
+[% @template
+operation Attribute declaration() { %]
+[% 
+var modifier = "";
+var type = self.datatypeAttribute.getTextRepresentationAsType(); 
+if (self.modifier <> java!Modifier#none)
+{
+	modifier=self.modifier;
+}
+%]
+[%=self.visibility%] [%=type%] [%=modifier%] [%=self.name%];
+[% } %]
+
+[** SubTemplate para declarar un metodo**]
+[% @template
+operation Method declaration() { %]
+[% 
+var modifier = "";
+var parameters = self.getTextRepresentationForMethodParameters() ;
+var returnType="void";
+if (self.modifier <> java!Modifier#none)
+{
+	modifier=self.modifier;
+}
+if (self.datatypeReturn.isDefined())
+{
+	returnType=self.datatypeReturn.getTextRepresentationAsType();
+}
+%]
+[%=self.visibility%] [%=modifier%] [%=returnType%] [%=self.name%]([%=parameters%])
+[% } %]
+
+
+[** SubTemplate para anotar una clase**]
+[% @template
+operation Class annotationsText(){ 
+	for (annotation in self.annotateClass) {
+		var textParameters:String = "";
+		for (keyValue in annotation.annotationParameters) {	
+			if (loopCount == 1) {
+				 textParameters = textParameters + "("; 
+			}
+			textParameters = textParameters + keyValue.key + " = " + keyValue.value;
+			if (hasMore) {
+				textParameters = textParameters + ", "; 	
+			}else{
+				textParameters = textParameters + ")";
+			}
+		}
+		%][%= annotation.name %][%= textParameters%]
+	[%}
+}%]
+
+[** SubTemplate para anotar un atributo**]
+[% @template
+operation Attribute annotationsText(){ 
+	for (annotation in self.annotateAttribute) {
+		var textParameters:String = "";
+		for (keyValue in annotation.annotationParameters) {	
+			if (loopCount == 1) {
+				 textParameters = textParameters + "("; 
+			}
+			textParameters = textParameters + keyValue.key + " = " + keyValue.value;
+			if (hasMore) {
+				textParameters = textParameters + ", "; 	
+			}else{
+				textParameters = textParameters + ")";
+			}
+		}
+		%][%= annotation.name %][%= textParameters%]
+	[%}
+}%]
+
+[** SubTemplate para anotar un metodo**]
+[% @template
+operation Method annotationsText(){ 
+	for (annotation in self.annotateMethod) {
+		var textParameters:String = "";
+		for (keyValue in annotation.annotationParameters) {	
+			if (loopCount == 1) {
+				 textParameters = textParameters + "("; 
+			}
+			textParameters = textParameters + keyValue.key + " = " + keyValue.value;
+			if (hasMore) {
+				textParameters = textParameters + ", "; 	
+			}else{
+				textParameters = textParameters + ")";
+			}
+		}
+		%][%= annotation.name %][%= textParameters%]
+	[%}
+}%]
+

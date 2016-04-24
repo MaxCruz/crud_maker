@@ -1,4 +1,6 @@
-//Definicion de operaciones que sirven para el egl saveSQLtoJava
+//Definicion de operaciones reutilizables entre egls
+
+//Operaciones sobre directorios
 operation dirGenerado(): String{  
    return "../../generado/";
 }
@@ -7,20 +9,21 @@ operation dirStaticFiles():String{
  return "../../staticFiles/";
 }
 
+operation getAppName():String{
+ 	var app : java!Project:= java!Project.all.at(0);
+ 	return app.name;
+}
+
 operation dirProyecto(): String{  
-   return dirGenerado() + "co.edu.uniandes.sqlcrud/";
+   return dirGenerado() + getAppName() +"/";
 }
 
 operation dirSource(): String {
 	return dirProyecto()+"src/";
 }
 
-operation dirMundo(): String {
-	return dirSource()+"entities/";
-}
-
-operation dirTest(): String {
-	return dirSource()+"test/";
+operation dirPackage(packageName: String): String {
+	return dirSource()+ packageName + "/";
 }
 
 operation dirPomXML(): String {
@@ -37,4 +40,32 @@ operation dirProject(): String {
 
 operation dirClassPath(): String {
 	return dirProyecto();
+}
+
+/**Classifier agrupa DataType y  Class asi que el nombre funciona para cualquiera
+el tipo List es un caso especial*/
+operation Classifier getTextRepresentationAsType():String {
+	var type = self.name; 
+	if (self.isTypeOf(java!ListType) )
+	{
+		type = "List<"+self.datatype.name+">";
+	}
+	return type;
+}
+
+/**
+Retorna los parametros en linea, separados por coma
+**/
+operation Method getTextRepresentationForMethodParameters():String{
+	var textParameters:String = "";
+		for (parameter in self.methodParameters) {
+			textParameters = textParameters + parameter.datatypeParameter.getTextRepresentationAsType()+" " +parameter.name;
+			if (hasMore) {
+				textParameters = textParameters + ", "; 	
+			}
+		}
+	return textParameters;
+}
+
+operation Annotation getTextRepresentationForAnnotationKeyValues():String{
 }

@@ -3,20 +3,16 @@
   <packages name="entities">
     <classes name="Carrito">
       <annotateClass name="@Entity"/>
-      <annotateClass name="@ManyToOne">
-        <annotationParameters key="fetch" value="FetchType.LAZY"/>
-        <annotationParameters key="cascade" value="CascadeType.PERSIST"/>
-      </annotateClass>
       <methods datatypeReturn="//@datatype.0" name="getId"/>
       <methods name="setId">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
       </methods>
-      <methods name="getCarritoItems"/>
+      <methods datatypeReturn="//@datatype.2" name="getCarritoItems"/>
       <methods name="setCarritoItems">
-        <methodParameters name="carritoItems"/>
+        <methodParameters datatypeParameter="//@datatype.2" name="carritoItems"/>
       </methods>
       <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
-        <annotateAttribute name="@id"/>
+        <annotateAttribute name="@Id"/>
       </attributes>
       <attributes name="name" visibility="private" datatypeAttribute="//@datatype.1"/>
       <attributes name="cliente" visibility="private" datatypeAttribute="//@packages.0/@classes.1">
