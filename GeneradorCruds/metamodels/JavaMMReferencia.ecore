@@ -74,7 +74,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//Classifier"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StructuredElement">
+  <eClassifiers xsi:type="ecore:EClass" name="StructuredElement" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" lowerBound="1"
         eType="#//Modifier" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"

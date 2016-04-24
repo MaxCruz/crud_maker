@@ -1,3 +1,49 @@
 <?xml version="1.0" encoding="ASCII"?>
-<JavaMM:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:JavaMM="http://co.edu.uniandes/javamm" xsi:schemaLocation="http://co.edu.uniandes/javamm ../metamodels/JavaMM.ecore"/>
+<mmJavaMinimalista:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mmJavaMinimalista="http://uniandes.edu.co/mmJavaMinimalista" name="">
+  <rootPackage name="co.edu.uniandes.sqlcrud">
+    <subPackages name="src">
+      <subPackages name="entities">
+        <classes name="Carrito">
+          <annotateClass name="@Entity"/>
+          <methods datatypeReturn="//@datatype.0" name="getId"/>
+          <methods name="setId">
+            <methodParameters datatypeParameter="//@datatype.0" name="id"/>
+          </methods>
+          <methods datatypeReturn="//@datatype.3" name="getCarritoItems"/>
+          <methods name="setCarritoItems">
+            <methodParameters datatypeParameter="//@datatype.3" name="carritoItems"/>
+          </methods>
+          <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
+            <annotateAttribute name="@id"/>
+          </attributes>
+          <attributes name="name" visibility="private" datatypeAttribute="//@datatype.2"/>
+          <attributes name="cliente" visibility="private" datatypeAttribute="//@rootPackage/@subPackages.0/@subPackages.0/@classes.1">
+            <annotateAttribute name="@ManyToOne">
+              <annotationParameters key="fetch" value="FetchType.LAZY"/>
+              <annotationParameters key="cascade" value="CascadeType.PERSIST"/>
+            </annotateAttribute>
+            <annotateAttribute name="@PrimaryKeyJoinColumn"/>
+            <annotateAttribute name="@PodamExclude"/>
+          </attributes>
+          <attributes name="carritoItems" datatypeAttribute="//@datatype.3">
+            <annotateAttribute/>
+            <annotateAttribute/>
+          </attributes>
+        </classes>
+        <classes name="Cliente"/>
+        <classes name="CarritoItem"/>
+      </subPackages>
+      <subPackages name="test">
+        <classes name="CarritoTest"/>
+        <classes name="ClienteTest"/>
+      </subPackages>
+      <subPackages name="entitiesmanager">
+        <classes name="ManejadorPersistencia"/>
+      </subPackages>
+    </subPackages>
+  </rootPackage>
+  <datatype xsi:type="mmJavaMinimalista:Primitive" name="int"/>
+  <datatype xsi:type="mmJavaMinimalista:Primitive" name="char" typeName="char"/>
+  <datatype name="String"/>
+  <datatype xsi:type="mmJavaMinimalista:List" name="listaCarritoItem" datatype="//@rootPackage/@subPackages.0/@subPackages.0/@classes.2"/>
+</mmJavaMinimalista:Project>
