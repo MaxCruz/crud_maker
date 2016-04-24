@@ -1,6 +1,10 @@
+/**--------------------------------------------------------------**/
 //Definicion de operaciones reutilizables entre egls
+/**--------------------------------------------------------------**/
 
+//--------------------------------------------------------------
 //Operaciones sobre directorios
+//--------------------------------------------------------------
 operation dirGenerado(): String{  
    return "../../generado/";
 }
@@ -42,6 +46,10 @@ operation dirClassPath(): String {
 	return dirProyecto();
 }
 
+//--------------------------------------------------------------
+// Operaciones comunes para los egls que crean las clases
+//--------------------------------------------------------------
+
 /**Classifier agrupa DataType y  Class asi que el nombre funciona para cualquiera
 el tipo List es un caso especial*/
 operation Classifier getTextRepresentationAsType():String {
@@ -54,8 +62,8 @@ operation Classifier getTextRepresentationAsType():String {
 }
 
 /**
-Retorna los parametros en linea, separados por coma
-**/
+Retorna los parametros de un metodo en formato de una linea y separados por coma
+*/
 operation Method getTextRepresentationForMethodParameters():String{
 	var textParameters:String = "";
 		for (parameter in self.methodParameters) {
@@ -67,5 +75,22 @@ operation Method getTextRepresentationForMethodParameters():String{
 	return textParameters;
 }
 
+/**
+Retorna los keyvalues de una anotacion en formato de una linea, 
+separados por coma y dentro de parentesis
+*/
 operation Annotation getTextRepresentationForAnnotationKeyValues():String{
+	var textParameters:String = "";
+		for (keyValue in self.annotationParameters) {	
+			if (loopCount == 1) {
+				 textParameters = textParameters + "("; 
+			}
+			textParameters = textParameters + keyValue.key + " = " + keyValue.value;
+			if (hasMore) {
+				textParameters = textParameters + ", "; 	
+			}else{
+				textParameters = textParameters + ")";
+			}
+		}
+	return textParameters;
 }

@@ -45,18 +45,7 @@ if (self.datatypeReturn.isDefined())
 [% @template
 operation Class annotationsText(){ 
 	for (annotation in self.annotateClass) {
-		var textParameters:String = "";
-		for (keyValue in annotation.annotationParameters) {	
-			if (loopCount == 1) {
-				 textParameters = textParameters + "("; 
-			}
-			textParameters = textParameters + keyValue.key + " = " + keyValue.value;
-			if (hasMore) {
-				textParameters = textParameters + ", "; 	
-			}else{
-				textParameters = textParameters + ")";
-			}
-		}
+		var textParameters:String = annotation.getTextRepresentationForAnnotationKeyValues();
 		%][%= annotation.name %][%= textParameters%]
 	[%}
 }%]
@@ -65,18 +54,7 @@ operation Class annotationsText(){
 [% @template
 operation Attribute annotationsText(){ 
 	for (annotation in self.annotateAttribute) {
-		var textParameters:String = "";
-		for (keyValue in annotation.annotationParameters) {	
-			if (loopCount == 1) {
-				 textParameters = textParameters + "("; 
-			}
-			textParameters = textParameters + keyValue.key + " = " + keyValue.value;
-			if (hasMore) {
-				textParameters = textParameters + ", "; 	
-			}else{
-				textParameters = textParameters + ")";
-			}
-		}
+		var textParameters:String = annotation.getTextRepresentationForAnnotationKeyValues();
 		%][%= annotation.name %][%= textParameters%]
 	[%}
 }%]
@@ -85,18 +63,7 @@ operation Attribute annotationsText(){
 [% @template
 operation Method annotationsText(){ 
 	for (annotation in self.annotateMethod) {
-		var textParameters:String = "";
-		for (keyValue in annotation.annotationParameters) {	
-			if (loopCount == 1) {
-				 textParameters = textParameters + "("; 
-			}
-			textParameters = textParameters + keyValue.key + " = " + keyValue.value;
-			if (hasMore) {
-				textParameters = textParameters + ", "; 	
-			}else{
-				textParameters = textParameters + ")";
-			}
-		}
+		var textParameters:String = annotation.getTextRepresentationForAnnotationKeyValues();
 		%][%= annotation.name %][%= textParameters%]
 	[%}
 }%]
