@@ -313,7 +313,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" xmi:id="_cG3xJQm2EeaYqaRqn1lxcQ" name="Collection"
+  <eClassifiers xsi:type="ecore:EClass" xmi:id="_cG3xJQm2EeaYqaRqn1lxcQ" name="ListType"
       eSuperTypes="#_cG3xMQm2EeaYqaRqn1lxcQ">
     <eAnnotations xmi:id="_cG3xJgm2EeaYqaRqn1lxcQ" source="genmymodel">
       <details xmi:id="_cG3xJwm2EeaYqaRqn1lxcQ" key="uuid" value="_S40uoOudEDObKfMbV8vhfw"/>
@@ -324,12 +324,6 @@
         <details xmi:id="_cG3xKgm2EeaYqaRqn1lxcQ" key="uuid" value="_5GtJgOueEDObKfMbV8vhfw"/>
       </eAnnotations>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" xmi:id="_cG3xLQm2EeaYqaRqn1lxcQ" name="List"
-      eSuperTypes="#_cG3xJQm2EeaYqaRqn1lxcQ">
-    <eAnnotations xmi:id="_cG3xLgm2EeaYqaRqn1lxcQ" source="genmymodel">
-      <details xmi:id="_cG3xLwm2EeaYqaRqn1lxcQ" key="uuid" value="_Zy16cOudEDObKfMbV8vhfw"/>
-    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" xmi:id="_cG3xMQm2EeaYqaRqn1lxcQ" name="DataType"
       eSuperTypes="#_cG3Kiwm2EeaYqaRqn1lxcQ">
