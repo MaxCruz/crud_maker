@@ -1,0 +1,127 @@
+
+/**
+* This rule is the starting point of the transformation, this map DataBase
+* to Project. We will launch the definition of the rootPackage and dataType
+* relation throught the equivalent function to  
+*/
+rule DataBase2Project
+	transform d : sql!DataBase
+	to p : java!Project {
+		p.name = "Crud";
+		// This package storage the entity mapping
+		var entitiesPackage = new java!Package;
+		entitiesPackage.name = "entities";
+		entitiesPackage.classes = d.table.equivalent();
+		p.packages.add(entitiesPackage);
+	} 
+
+/**
+* This rule transform a Table element in a entity Class element
+*/
+@lazy
+rule Table2Class
+	transform t : sql!Table
+	to c : java!Class {
+		c.name = t.name;
+		c.visibility = java!Visibility#public;
+		
+		// Define entity attributes
+		c.attributes = t.column.equivalent();
+		
+		// Find primary key attributes
+		var primaryKeyAttributes = c.attributes.select(a|t.primarykey.column.collect(c|c.name).includes(a.name));
+		for (attribute : java!Attribute in primaryKeyAttributes) {
+			attribute.annotateAttribute.add(annotate("@Id"));
+		}
+		
+		// Find many to one relations
+		var foreignKeyAttributes = c.attributes.select(a|t.foreignkey.column.collect(c|c.name).flatten().includes(a.name));
+		for (attribute : java!Attribute in foreignKeyAttributes) {
+			attribute.annotateAttribute.add(annotateManyToOne());
+			attribute.annotateAttribute.add(annotate("@PrimaryKeyJoinColumn"));
+			attribute.annotateAttribute.add(annotate("@PodamExclude"));
+			var tableRef = t.foreignkey.select(f|f.column.collect(c|c.name).flatten().includes(attribute.name)).tableRef;
+			attribute.name = tableRef.first().name.toLowerCase();
+		}
+		
+		// Find one to many relations
+		for (anotherTable : sql!Table in sql!Table.all().select(a|a.name <> t.name)) {
+			for(foreignKey : ForeignKey in anotherTable.foreignkey.select(f|f.tableRef.name == t.name)) {
+				var attributeOneToMany = new java!Attribute;
+				attributeOneToMany.name = anotherTable.name.firstToLowerCase() + "s";
+				attributeOneToMany.visibility = java!Visibility#private;
+				attributeOneToMany.annotateAttribute.add(annotateOneToMany(t.name.toLowerCase()));
+				attributeOneToMany.annotateAttribute.add(annotate("@PodamExclude"));
+				c.attributes.add(attributeOneToMany);
+			}
+		}
+		
+		// Add constructor
+		var constructor = new java!Method;
+		constructor.name = t.name;
+		c.methods.add(constructor);
+		
+		// Define getters and setters
+		c.methods.addAll(c.attributes.collect(a|a.getMethods()));
+		c.methods.addAll(c.attributes.collect(a|a.setMethods()));
+		
+		// Annotations
+		c.annotateClass.add(annotate("@Entity"));
+	}
+
+/**
+* This rule handle a Column element to an Attribute 
+*/
+@lazy
+rule Column2Attribute
+	transform c : sql!Column
+	to a : java!Attribute {
+		a.name = c.name;
+		a.visibility = java!Visibility#private;
+	}
+
+operation java!Attribute getMethods() : java!Method {
+	var getter = new java!Method;
+	getter.name = "get" + self.name.firstToUpperCase();
+	getter.visibility = java!Visibility#public;
+	return getter;
+}
+
+operation java!Attribute setMethods() : java!Method {
+	var setter = new java!Method;
+	setter.name = "set" + self.name.firstToUpperCase();
+	setter.visibility = java!Visibility#public;
+	return setter;
+}
+
+operation annotate(name : String) : java!Annotation {
+	var annotation = new java!Annotation;
+	annotation.name = name;
+	return annotation;
+}
+
+operation annotateManyToOne() : java!Annotation {
+	var keyValueFetch = new java!KeyValue;
+	keyValueFetch.key = "fetch";
+	keyValueFetch.value = "FetchType.LAZY";
+	var keyValueCascade = new java!KeyValue;
+	keyValueCascade.key = "cascade";
+	keyValueCascade.value = "CascadeType.PERSIST";
+	var manyToOne = annotate("@ManyToOne");
+	manyToOne.annotationParameters.add(keyValueFetch);
+	manyToOne.annotationParameters.add(keyValueCascade);
+	return manyToOne;
+}
+
+operation annotateOneToMany(mappedBy : String) : java!Annotation {
+	var keyValueCascade = new java!KeyValue;
+	keyValueCascade.key = "cascade";
+	keyValueCascade.value = "CascadeType.ALL";
+	var keyValueFetch = new java!KeyValue;
+	keyValueFetch.key = "mappedBy";
+	keyValueFetch.value = mappedBy;
+	var oneToMany = annotate("@OneToMany");
+	oneToMany.annotationParameters.add(keyValueFetch);
+	oneToMany.annotationParameters.add(keyValueCascade);
+	return oneToMany;
+}

@@ -1,12 +1,141 @@
 <?xml version="1.0" encoding="ASCII"?>
 <mmJavaMinimalista:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mmJavaMinimalista="http://uniandes.edu.co/mmJavaMinimalista" name="Crud">
   <packages name="entities">
-    <classes name="Client"/>
-    <classes name="Producto"/>
-    <classes name="Carrito"/>
-    <classes name="CarritoItem"/>
-    <classes name="Item"/>
+    <classes name="Client">
+      <annotateClass name="@Entity"/>
+      <methods name="Client"/>
+      <methods name="getId"/>
+      <methods name="getPassword"/>
+      <methods name="getName"/>
+      <methods name="getCarritos"/>
+      <methods name="setId"/>
+      <methods name="setPassword"/>
+      <methods name="setName"/>
+      <methods name="setCarritos"/>
+      <attributes name="id" visibility="private">
+        <annotateAttribute name="@Id"/>
+      </attributes>
+      <attributes name="password" visibility="private"/>
+      <attributes name="name" visibility="private"/>
+      <attributes name="carritos" visibility="private">
+        <annotateAttribute name="@OneToMany">
+          <annotationParameters key="mappedBy" value="client"/>
+          <annotationParameters key="cascade" value="CascadeType.ALL"/>
+        </annotateAttribute>
+        <annotateAttribute name="@PodamExclude"/>
+      </attributes>
+    </classes>
+    <classes name="Producto">
+      <annotateClass name="@Entity"/>
+      <methods name="Producto"/>
+      <methods name="getName"/>
+      <methods name="getId"/>
+      <methods name="getItems"/>
+      <methods name="setName"/>
+      <methods name="setId"/>
+      <methods name="setItems"/>
+      <attributes name="name" visibility="private"/>
+      <attributes name="id" visibility="private">
+        <annotateAttribute name="@Id"/>
+      </attributes>
+      <attributes name="items" visibility="private">
+        <annotateAttribute name="@OneToMany">
+          <annotationParameters key="mappedBy" value="producto"/>
+          <annotationParameters key="cascade" value="CascadeType.ALL"/>
+        </annotateAttribute>
+        <annotateAttribute name="@PodamExclude"/>
+      </attributes>
+    </classes>
+    <classes name="Carrito">
+      <annotateClass name="@Entity"/>
+      <methods name="Carrito"/>
+      <methods name="getId"/>
+      <methods name="getName"/>
+      <methods name="getClient"/>
+      <methods name="getCarritoItems"/>
+      <methods name="setId"/>
+      <methods name="setName"/>
+      <methods name="setClient"/>
+      <methods name="setCarritoItems"/>
+      <attributes name="id" visibility="private">
+        <annotateAttribute name="@Id"/>
+      </attributes>
+      <attributes name="name" visibility="private"/>
+      <attributes name="client" visibility="private">
+        <annotateAttribute name="@ManyToOne">
+          <annotationParameters key="fetch" value="FetchType.LAZY"/>
+          <annotationParameters key="cascade" value="CascadeType.PERSIST"/>
+        </annotateAttribute>
+        <annotateAttribute name="@PrimaryKeyJoinColumn"/>
+        <annotateAttribute name="@PodamExclude"/>
+      </attributes>
+      <attributes name="carritoItems" visibility="private">
+        <annotateAttribute name="@OneToMany">
+          <annotationParameters key="mappedBy" value="carrito"/>
+          <annotationParameters key="cascade" value="CascadeType.ALL"/>
+        </annotateAttribute>
+        <annotateAttribute name="@PodamExclude"/>
+      </attributes>
+    </classes>
+    <classes name="CarritoItem">
+      <annotateClass name="@Entity"/>
+      <methods name="CarritoItem"/>
+      <methods name="getCarrito"/>
+      <methods name="getItem"/>
+      <methods name="setCarrito"/>
+      <methods name="setItem"/>
+      <attributes name="carrito" visibility="private">
+        <annotateAttribute name="@Id"/>
+        <annotateAttribute name="@ManyToOne">
+          <annotationParameters key="fetch" value="FetchType.LAZY"/>
+          <annotationParameters key="cascade" value="CascadeType.PERSIST"/>
+        </annotateAttribute>
+        <annotateAttribute name="@PrimaryKeyJoinColumn"/>
+        <annotateAttribute name="@PodamExclude"/>
+      </attributes>
+      <attributes name="item" visibility="private">
+        <annotateAttribute name="@Id"/>
+        <annotateAttribute name="@ManyToOne">
+          <annotationParameters key="fetch" value="FetchType.LAZY"/>
+          <annotationParameters key="cascade" value="CascadeType.PERSIST"/>
+        </annotateAttribute>
+        <annotateAttribute name="@PrimaryKeyJoinColumn"/>
+        <annotateAttribute name="@PodamExclude"/>
+      </attributes>
+    </classes>
+    <classes name="Item">
+      <annotateClass name="@Entity"/>
+      <methods name="Item"/>
+      <methods name="getId"/>
+      <methods name="getCantidad"/>
+      <methods name="getName"/>
+      <methods name="getProducto"/>
+      <methods name="getCarritoItems"/>
+      <methods name="setId"/>
+      <methods name="setCantidad"/>
+      <methods name="setName"/>
+      <methods name="setProducto"/>
+      <methods name="setCarritoItems"/>
+      <attributes name="id" visibility="private">
+        <annotateAttribute name="@Id"/>
+      </attributes>
+      <attributes name="cantidad" visibility="private"/>
+      <attributes name="name" visibility="private"/>
+      <attributes name="producto" visibility="private">
+        <annotateAttribute name="@ManyToOne">
+          <annotationParameters key="fetch" value="FetchType.LAZY"/>
+          <annotationParameters key="cascade" value="CascadeType.PERSIST"/>
+        </annotateAttribute>
+        <annotateAttribute name="@PrimaryKeyJoinColumn"/>
+        <annotateAttribute name="@PodamExclude"/>
+      </attributes>
+      <attributes name="carritoItems" visibility="private">
+        <annotateAttribute name="@OneToMany">
+          <annotationParameters key="mappedBy" value="item"/>
+          <annotationParameters key="cascade" value="CascadeType.ALL"/>
+        </annotateAttribute>
+        <annotateAttribute name="@PodamExclude"/>
+      </attributes>
+    </classes>
   </packages>
-  <packages name="marketplace"/>
-  <packages name="test.java"/>
 </mmJavaMinimalista:Project>

@@ -1,0 +1,26 @@
+import "sql2JavaEntities.etl";
+
+pre {
+	"Running ETL".println();
+}
+
+post {
+	("Project: " + java!Project.all().size()).println(); 
+	("Package: " + java!Package.all().size()).println();
+	("Class: " + java!Class.all().size()).println();
+	("Attribute: " + java!Attribute.all().size()).println();
+	("Method: " + java!Method.all().size()).println();
+	("Annotation: " + java!Annotation.all().size()).println();
+}
+
+/*
+// This package manages the persistence
+var entitiesPackage = new java!Package;
+entitiesPackage.name = "marketplace";
+p.packages.add(entitiesPackage);
+		
+// This package storage the unit tests for entities
+var testPackage = new java!Package;
+testPackage.name = "test.java";
+p.packages.add(testPackage);
+*/
