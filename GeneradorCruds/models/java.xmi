@@ -27,21 +27,52 @@
         <annotateAttribute/>
         <annotateAttribute/>
       </attributes>
-      <imports name="import java.util.List;"/>
-      <imports name="import javax.persistence.*;"/>
-      <imports name="import uk.co.jemos.podam.common.PodamExclude;"/>
+      <imports name="java.util.List"/>
+      <imports name="javax.persistence.*"/>
+      <imports name="uk.co.jemos.podam.common.PodamExclude"/>
     </classes>
     <classes name="Cliente"/>
     <classes name="CarritoItem"/>
   </packages>
-  <packages name="test.java">
-    <classes name="CarritoTest"/>
+  <packages name="test">
+    <classes name="CarritoTest">
+      <annotateClass name="@FixMethodOrder">
+        <annotationParameters value="MethodSorters.NAME_ASCENDING"/>
+      </annotateClass>
+      <methods name="prepareTest">
+        <annotateMethod name="@Before"/>
+      </methods>
+      <attributes name="mp" visibility="private" datatypeAttribute="//@packages.2/@classes.0"/>
+      <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.3"/>
+      <imports name="static org.junit.Assert.*"/>
+      <imports name="entities.Carrito"/>
+      <imports name="org.junit.Before"/>
+      <imports name="org.junit.FixMethodOrder"/>
+      <imports name="org.junit.Test"/>
+      <imports name="org.junit.runners.MethodSorters"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactory"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactoryImpl"/>
+      <imports name="marketplace.MarketPlace"/>
+    </classes>
     <classes name="ClienteTest"/>
   </packages>
   <packages name="marketplace">
-    <classes name="MarketPlace"/>
+    <classes name="MarketPlace">
+      <methods/>
+      <attributes name="PERSISTENCE_UNIT_NAME" visibility="private" datatypeAttribute="//@datatype.1" modifier="static final"/>
+      <attributes name="emf" datatypeAttribute="//@datatype.4" modifier="static"/>
+      <attributes name="em" datatypeAttribute="//@datatype.5"/>
+      <imports name="java.util.List"/>
+      <imports name="javax.persistence.EntityManager"/>
+      <imports name="javax.persistence.EntityManagerFactory"/>
+      <imports name="javax.persistence.Persistence"/>
+      <imports name="javax.persistence.Query"/>
+    </classes>
   </packages>
   <datatype xsi:type="mmJavaMinimalista:Primitive" name="int"/>
   <datatype name="String"/>
   <datatype xsi:type="mmJavaMinimalista:ListType" name="listaCarritoItem" datatype="//@packages.0/@classes.2"/>
+  <datatype name="PodamFactory"/>
+  <datatype name="EntityManagerFactory"/>
+  <datatype name="EntityManager"/>
 </mmJavaMinimalista:Project>

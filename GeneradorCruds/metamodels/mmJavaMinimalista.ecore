@@ -300,6 +300,7 @@
         <details xmi:id="_cG3xHAm2EeaYqaRqn1lxcQ" key="uuid" value="_2y32IOvUEDOUsItWISc23Q"/>
       </eAnnotations>
     </eLiterals>
+    <eLiterals name="staticfinal" value="5" literal="static final"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" xmi:id="_cG3xHQm2EeaYqaRqn1lxcQ" name="Primitive"
       eSuperTypes="#_cG3xMQm2EeaYqaRqn1lxcQ">

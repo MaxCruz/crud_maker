@@ -15,10 +15,10 @@ var modifier = "";
 var type = self.datatypeAttribute.getTextRepresentationAsType(); 
 if (self.modifier <> java!Modifier#none)
 {
-	modifier=self.modifier;
+	modifier=" "+self.modifier.literal;
 }
 %]
-[%=self.visibility%] [%=type%] [%=modifier%] [%=self.name%];
+[%=self.visibility%][%=modifier%] [%=type%] [%=self.name%]
 [% } %]
 
 [** SubTemplate para declarar un metodo**]

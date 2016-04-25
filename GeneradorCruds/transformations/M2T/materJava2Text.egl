@@ -10,7 +10,7 @@ out.println("INICIO generador SQL2Java------------------------------------------
 
 //Division de trabajo en templates
 var packageEntities:String = "entities";
-var packageTest:String  = "test.java";
+var packageTest:String  = "test";
 var packageEntitiesManager:String  = "marketplace";
 
 //Elementos fundamentales
@@ -71,8 +71,8 @@ for (test in tests)
 
 	claseTest  = TemplateFactory.load("generadorTest.egl");
 	claseTest.setFormatter(fjava);
-	claseTest.populate("test", test);
-	claseTest.generate(dirPackage(test.eContainer().name) + test.name.firstToUpperCase() + "Test.java");
+	claseTest.populate("claseTest", test);
+	claseTest.generate(dirPackage(test.eContainer().name) + test.name.firstToUpperCase() + ".java");
 
 }
 
@@ -84,6 +84,7 @@ out.println("Creando Manejador de Persisntencia" );
 
 manejadorPersistencia  = TemplateFactory.load("generadorEntitiesManager.egl");
 manejadorPersistencia.setFormatter(fjava);
+manejadorPersistencia.populate("entitiesManager", entitiesManager);
 manejadorPersistencia.generate(dirPackage(entitiesManager.eContainer().name) + entitiesManager.name +".java");
 
 

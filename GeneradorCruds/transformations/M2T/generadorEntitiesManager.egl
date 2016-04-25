@@ -1,0 +1,41 @@
+[%	
+import "./operations.eol";
+import "./subTemplates.egl";
+%]
+package [%= entitiesManager.eContainer().name %];
+
+[*For para imports*]
+[% for (importElement in entitiesManager.imports) { %]
+import [%= importElement.name %];
+[%}%]
+
+/**
+* Clase que administra la persistencia 
+* manipulando las entidades [%= entitiesManager.name %]
+*/
+[*Agrega anotaciones a la clase*]
+[%= entitiesManager.annotationsText()%]
+[*Agrega decalaracion de la clase*]
+[%= entitiesManager.declaration()%]
+{
+	[*Agrega los atributos a la clase*]
+	[% for (attributeElement in entitiesManager.attributes) { %]
+		[*Agrega anotaciones al atributo*]
+		[%= attributeElement.annotationsText()%]
+		[%if (attributeElement.name.startsWith('PERSISTENCE_UNIT_NAME')){%]
+			[%= attributeElement.declaration()%] = "ManejadorPersistencia-Test" ;
+		[%}%]
+		[%else{%]
+			[%= attributeElement.declaration()%];
+		[%}%]
+	[%}%]
+	
+    /*
+	 * [%= entitiesManager.name %]
+	 */
+	public [%= entitiesManager.name %]()
+	{
+		emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        em = emf.createEntityManager();
+	}
+}

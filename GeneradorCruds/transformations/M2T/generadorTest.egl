@@ -1,0 +1,50 @@
+[%	
+import "./operations.eol";
+import "./subTemplates.egl";
+%]
+package [%= claseTest.eContainer().name %];
+
+[*For para imports*]
+[% for (importElement in claseTest.imports) { %]
+import [%= importElement.name %];
+[%}%]
+
+/**
+* Clase para manejo de test [%= claseTest.name %]
+*
+*/
+[*Agrega anotaciones a la clase*]
+[%= claseTest.annotationsText()%]
+[*Agrega decalaracion de la clase*]
+[%= claseTest.declaration()%]
+{
+	[*Agrega los atributos a la clase*]
+	[% for (attributeElement in claseTest.attributes) { %]
+		[%= attributeElement.declaration()%];
+	[%}%]
+	
+	[*Agrega los metodos de la clase*]
+	[% for (methodElement in claseTest.methods) { %]
+		[*Agrega anotaciones al atributo*]
+		[%= methodElement.annotationsText()%]
+		[%= methodElement.declaration()%]
+		[%if (methodElement.name.startsWith('prepareTest')){%]
+		{
+			[% for (attributeElement in claseTest.attributes) { %]
+				[%if (attributeElement.datatypeAttribute.getTextRepresentationAsType()=='PodamFactory'){%]
+				[%= attributeElement.name%] = new PodamFactoryImpl();
+				[%}%]
+				[%else{%]
+				[%= attributeElement.name%] = new [%= attributeElement.datatypeAttribute.getTextRepresentationAsType()%]();
+				[%}%]
+			[%}%]
+		}
+		[%}%]
+		[%if (methodElement.name.startsWith('set')){%]
+		{
+			[%var nameAttribute = methodElement.name.substring(3).firstToLowerCase();%]
+			this.[%=nameAttribute%] = [%=nameAttribute%];
+		}
+		[%}%]
+	[%}%]
+}

@@ -6,7 +6,7 @@ package [%= claseEntity.eContainer().name %];
 
 [*For para imports*]
 [% for (importElement in claseEntity.imports) { %]
-[%= importElement.name %]
+import [%= importElement.name %];
 [%}%]
 
 /**
@@ -23,7 +23,7 @@ package [%= claseEntity.eContainer().name %];
 	[% for (attributeElement in claseEntity.attributes) { %]
 		[*Agrega anotaciones al atributo*]
 		[%= attributeElement.annotationsText()%]
-		[%= attributeElement.declaration()%]
+		[%= attributeElement.declaration()%];
 		
 	[%}%]
 	

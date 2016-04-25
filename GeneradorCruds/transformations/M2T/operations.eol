@@ -85,7 +85,15 @@ operation Annotation getTextRepresentationForAnnotationKeyValues():String{
 			if (loopCount == 1) {
 				 textParameters = textParameters + "("; 
 			}
-			textParameters = textParameters + keyValue.key + " = " + keyValue.value;
+			if (keyValue.key.isDefined() and keyValue.value.isDefined() )
+			{
+				textParameters = textParameters + keyValue.key + " = " + keyValue.value;
+			}
+			if (keyValue.key.isUndefined() and keyValue.value.isDefined() )
+			{
+				textParameters = textParameters + keyValue.value;
+			}
+			
 			if (hasMore) {
 				textParameters = textParameters + ", "; 	
 			}else{
