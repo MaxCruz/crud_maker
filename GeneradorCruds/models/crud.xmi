@@ -233,6 +233,15 @@
       </methods>
       <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
       <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactory"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactoryImpl"/>
+      <imports name="org.junit.Before"/>
+      <imports name="org.junit.Test"/>
+      <imports name="static org.junit.Assert.*"/>
+      <imports name="marketplace.Client"/>
+      <imports name="marketplace.MarketPlace"/>
+      <imports name="org.junit.FixMethodOrder"/>
+      <imports name="org.junit.runners.MethodSorters"/>
     </classes>
     <classes name="ProductoTest">
       <annotateClass name="@FixMethodOrder">
@@ -255,6 +264,15 @@
       </methods>
       <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
       <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactory"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactoryImpl"/>
+      <imports name="org.junit.Before"/>
+      <imports name="org.junit.Test"/>
+      <imports name="static org.junit.Assert.*"/>
+      <imports name="marketplace.Producto"/>
+      <imports name="marketplace.MarketPlace"/>
+      <imports name="org.junit.FixMethodOrder"/>
+      <imports name="org.junit.runners.MethodSorters"/>
     </classes>
     <classes name="CarritoTest">
       <annotateClass name="@FixMethodOrder">
@@ -277,6 +295,15 @@
       </methods>
       <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
       <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactory"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactoryImpl"/>
+      <imports name="org.junit.Before"/>
+      <imports name="org.junit.Test"/>
+      <imports name="static org.junit.Assert.*"/>
+      <imports name="marketplace.Carrito"/>
+      <imports name="marketplace.MarketPlace"/>
+      <imports name="org.junit.FixMethodOrder"/>
+      <imports name="org.junit.runners.MethodSorters"/>
     </classes>
     <classes name="CarritoItemTest">
       <annotateClass name="@FixMethodOrder">
@@ -299,6 +326,15 @@
       </methods>
       <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
       <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactory"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactoryImpl"/>
+      <imports name="org.junit.Before"/>
+      <imports name="org.junit.Test"/>
+      <imports name="static org.junit.Assert.*"/>
+      <imports name="marketplace.CarritoItem"/>
+      <imports name="marketplace.MarketPlace"/>
+      <imports name="org.junit.FixMethodOrder"/>
+      <imports name="org.junit.runners.MethodSorters"/>
     </classes>
     <classes name="ItemTest">
       <annotateClass name="@FixMethodOrder">
@@ -321,6 +357,15 @@
       </methods>
       <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
       <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactory"/>
+      <imports name="uk.co.jemos.podam.api.PodamFactoryImpl"/>
+      <imports name="org.junit.Before"/>
+      <imports name="org.junit.Test"/>
+      <imports name="static org.junit.Assert.*"/>
+      <imports name="marketplace.Item"/>
+      <imports name="marketplace.MarketPlace"/>
+      <imports name="org.junit.FixMethodOrder"/>
+      <imports name="org.junit.runners.MethodSorters"/>
     </classes>
   </packages>
   <datatype xsi:type="mmJavaMinimalista:Primitive"/>

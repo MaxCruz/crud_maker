@@ -1,4 +1,7 @@
 
+/**
+* Create test class for each entity saved
+*/
 operation java!Class testEntityClass() : java!Class {
 	var testClass = new java!Class;
 	testClass.name = self.name + "Test";
@@ -17,10 +20,25 @@ operation java!Class testEntityClass() : java!Class {
 	// Add test methods
 	testClass.addTestMethods(self.name);
 	
+	// Add general required imports for test class
+	testClass.imports.add(getImport("static org.junit.Assert.*"));
+	testClass.imports.add(getImport("marketplace." + self.name));
+	testClass.imports.add(getImport("marketplace.MarketPlace"));
+	testClass.imports.add(getImport("org.junit.FixMethodOrder"));
+	testClass.imports.add(getImport("org.junit.runners.MethodSorters"));
+	
 	return testClass;
 }
 
+/**
+* Add required attributes to perform the tests
+*/
 operation java!Class addTestAttributes() {
+
+	// Add required imports for attributes
+	self.imports.add(getImport("uk.co.jemos.podam.api.PodamFactory"));
+	self.imports.add(getImport("uk.co.jemos.podam.api.PodamFactoryImpl"));
+
 	// Add MarketPlace attribute
 	var mp = new java!Attribute;
 	mp.name = "mp";
@@ -36,7 +54,15 @@ operation java!Class addTestAttributes() {
 	self.attributes.add(factory);
 }
 
+/**
+* Add test methods
+*/
 operation java!Class addTestMethods(baseName : String) {
+
+	// Add required imports for methods
+	self.imports.add(getImport("org.junit.Before"));
+	self.imports.add(getImport("org.junit.Test"));
+
 	// Method to execute before make the test
 	var prepareTest = getMethod("prepareTest");
 	prepareTest.annotateMethod.add(getAnnotation("@Before"));
