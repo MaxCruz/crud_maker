@@ -1,0 +1,7 @@
+
+operation java!Class testEntityClass() : java!Class {
+	var testClass = new java!Class;
+	testClass.name = self.name + "Test";
+	testClass.visibility = java!Visibility#public;
+	return testClass;
+}

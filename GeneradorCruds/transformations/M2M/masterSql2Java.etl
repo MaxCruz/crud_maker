@@ -1,11 +1,46 @@
+import "transformOperations.eol";
 import "sql2JavaEntities.etl";
+import "sql2JavaTest.etl";
 
 pre {
 	"Running ETL".println();
+	
+	// This map will save all data types 
 	var typeMap : new Map;
 }
 
+
+/**
+* This rule is the starting point of the transformation, this map DataBase
+* to Project. We will launch the definition of the rootPackage and dataType
+* relation throught the equivalent function to  
+*/
+rule DataBase2Project
+	transform d : sql!DataBase
+	to p : java!Project {
+		p.name = "Crud";
+		p.extractTypes();
+		
+		// This package storage the entity mapping
+		var entitiesPackage = new java!Package;
+		entitiesPackage.name = "entities";
+		entitiesPackage.classes = d.table.equivalent();
+		p.packages.add(entitiesPackage);
+		
+		// This package manages the persistence
+		var entitiesPackage = new java!Package;
+		entitiesPackage.name = "marketplace";
+		p.packages.add(entitiesPackage);
+
+		// This package storage the unit tests for entities
+		var testPackage = new java!Package;
+		testPackage.name = "test.java";
+		testPackage.classes.addAll(p.packages.select(p|p.name == "entities").classes.flatten().collect(e|e.testEntityClass()));
+		p.packages.add(testPackage);
+	}
+
 post {
+	// Print the results 
 	("Project: " + java!Project.all().size()).println(); 
 	("Package: " + java!Package.all().size()).println();
 	("Class: " + java!Class.all().size()).println();
@@ -13,15 +48,3 @@ post {
 	("Method: " + java!Method.all().size()).println();
 	("Annotation: " + java!Annotation.all().size()).println();
 }
-
-/*
-// This package manages the persistence
-var entitiesPackage = new java!Package;
-entitiesPackage.name = "marketplace";
-p.packages.add(entitiesPackage);
-		
-// This package storage the unit tests for entities
-var testPackage = new java!Package;
-testPackage.name = "test.java";
-p.packages.add(testPackage);
-*/

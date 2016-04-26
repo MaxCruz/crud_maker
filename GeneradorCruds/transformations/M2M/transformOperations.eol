@@ -1,0 +1,70 @@
+/**
+* Reusable common for the transformation
+*/
+
+/**
+* This operation adds all the required data types in the transformation
+*/
+operation java!Project extractTypes() {
+	
+	// Map SQL int to Java int primitive 
+	var integer : java!Classifier = new java!Primitive;
+	integer.typeName = java!Primitives#int;
+	self.datatype.add(integer);
+	typeMap.put(sql!DataType#int, integer);
+	
+	// Map SQL boolean to Java boolean primitive
+	var boolean : java!Classifier = new java!Primitive;
+	boolean.typeName = java!Primitives#boolean; 
+	self.datatype.add(boolean);
+	typeMap.put(sql!DataType#boolean, boolean);
+	
+	// Map SQL number to Java float primitive
+	var number : java!Classifier = new java!Primitive;
+	number.typeName = java!Primitives#float; 
+	self.datatype.add(number);
+	typeMap.put(sql!DataType#number, number);
+	
+	// Map SQL date to Java Date data type
+	var date : java!Classifier = new java!DataType;
+	date.name = "Date";
+	self.datatype.add(date);
+	typeMap.put(sql!DataType#date, date);
+	
+	// Map SQL varchar to Java String data type	
+	var string : java!Classifier = new java!DataType;
+	string.name = "String";
+	self.datatype.add(string);
+	typeMap.put(sql!DataType#varchar, string);
+	
+	// Iterate tables and add each one as class type and collection type 
+	for (table : Table in sql!Table.all()) {
+		var type : java!Classifier = new java!DataType;
+		type.name = table.name;
+		self.datatype.add(type);
+		typeMap.put(table.name.firstToLowerCase(), type);
+		
+		var list : java!Classifier = new java!ListType;
+		list.name = table.name;
+		self.datatype.add(list);
+		typeMap.put(table.name.firstToLowerCase() + "List", list);
+	}
+}
+
+/**
+* This operation give an annotation element for the string parameter
+*/
+operation getAnnotation(name : String) : java!Annotation {
+	var annotation = new java!Annotation;
+	annotation.name = name;
+	return annotation;
+}
+
+/**
+* This operation give an import element for the string parameter
+*/
+operation getImport(name : String) : java!Import {
+	var importObject = new java!Import;
+	importObject.name = name;
+	return importObject;
+}

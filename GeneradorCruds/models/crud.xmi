@@ -210,6 +210,14 @@
       <imports name="javax.persistence.Entity"/>
     </classes>
   </packages>
+  <packages name="marketplace"/>
+  <packages name="test.java">
+    <classes name="ClientTest"/>
+    <classes name="ProductoTest"/>
+    <classes name="CarritoTest"/>
+    <classes name="CarritoItemTest"/>
+    <classes name="ItemTest"/>
+  </packages>
   <datatype xsi:type="mmJavaMinimalista:Primitive"/>
   <datatype xsi:type="mmJavaMinimalista:Primitive" typeName="String"/>
   <datatype xsi:type="mmJavaMinimalista:Primitive" typeName="float"/>
