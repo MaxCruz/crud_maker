@@ -89,6 +89,7 @@ operation java!Attribute getMethods() : java!Method {
 	var getter = new java!Method;
 	getter.name = "get" + self.name.firstToUpperCase();
 	getter.visibility = java!Visibility#public;
+	getter.datatypeReturn = self.datatypeAttribute;
 	return getter;
 }
 
@@ -96,6 +97,10 @@ operation java!Attribute setMethods() : java!Method {
 	var setter = new java!Method;
 	setter.name = "set" + self.name.firstToUpperCase();
 	setter.visibility = java!Visibility#public;
+	var parameter = new java!Parameter;
+	parameter.name = self.name;
+	parameter.datatypeParameter = self.datatypeAttribute;
+	setter.methodParameters.add(parameter);
 	return setter;
 }
 

@@ -4,14 +4,22 @@
     <classes name="Client">
       <annotateClass name="@Entity"/>
       <methods name="Client"/>
-      <methods name="getId"/>
-      <methods name="getPassword"/>
-      <methods name="getName"/>
-      <methods name="getCarritos"/>
-      <methods name="setId"/>
-      <methods name="setPassword"/>
-      <methods name="setName"/>
-      <methods name="setCarritos"/>
+      <methods datatypeReturn="//@datatype.0" name="getId"/>
+      <methods datatypeReturn="//@datatype.4" name="getPassword"/>
+      <methods datatypeReturn="//@datatype.4" name="getName"/>
+      <methods datatypeReturn="//@datatype.10" name="getCarritos"/>
+      <methods name="setId">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
+      </methods>
+      <methods name="setPassword">
+        <methodParameters datatypeParameter="//@datatype.4" name="password"/>
+      </methods>
+      <methods name="setName">
+        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
+      </methods>
+      <methods name="setCarritos">
+        <methodParameters datatypeParameter="//@datatype.10" name="carritos"/>
+      </methods>
       <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
       </attributes>
@@ -28,12 +36,18 @@
     <classes name="Producto">
       <annotateClass name="@Entity"/>
       <methods name="Producto"/>
-      <methods name="getName"/>
-      <methods name="getId"/>
-      <methods name="getItems"/>
-      <methods name="setName"/>
-      <methods name="setId"/>
-      <methods name="setItems"/>
+      <methods datatypeReturn="//@datatype.4" name="getName"/>
+      <methods datatypeReturn="//@datatype.0" name="getId"/>
+      <methods datatypeReturn="//@datatype.14" name="getItems"/>
+      <methods name="setName">
+        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
+      </methods>
+      <methods name="setId">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
+      </methods>
+      <methods name="setItems">
+        <methodParameters datatypeParameter="//@datatype.14" name="items"/>
+      </methods>
       <attributes name="name" visibility="private" datatypeAttribute="//@datatype.4"/>
       <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
@@ -49,14 +63,22 @@
     <classes name="Carrito">
       <annotateClass name="@Entity"/>
       <methods name="Carrito"/>
-      <methods name="getId"/>
-      <methods name="getName"/>
-      <methods name="getClient"/>
-      <methods name="getCarritoItems"/>
-      <methods name="setId"/>
-      <methods name="setName"/>
-      <methods name="setClient"/>
-      <methods name="setCarritoItems"/>
+      <methods datatypeReturn="//@datatype.0" name="getId"/>
+      <methods datatypeReturn="//@datatype.4" name="getName"/>
+      <methods datatypeReturn="//@datatype.5" name="getClient"/>
+      <methods datatypeReturn="//@datatype.12" name="getCarritoItems"/>
+      <methods name="setId">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
+      </methods>
+      <methods name="setName">
+        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
+      </methods>
+      <methods name="setClient">
+        <methodParameters datatypeParameter="//@datatype.5" name="client"/>
+      </methods>
+      <methods name="setCarritoItems">
+        <methodParameters datatypeParameter="//@datatype.12" name="carritoItems"/>
+      </methods>
       <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
       </attributes>
@@ -80,10 +102,14 @@
     <classes name="CarritoItem">
       <annotateClass name="@Entity"/>
       <methods name="CarritoItem"/>
-      <methods name="getCarrito"/>
-      <methods name="getItem"/>
-      <methods name="setCarrito"/>
-      <methods name="setItem"/>
+      <methods datatypeReturn="//@datatype.9" name="getCarrito"/>
+      <methods datatypeReturn="//@datatype.13" name="getItem"/>
+      <methods name="setCarrito">
+        <methodParameters datatypeParameter="//@datatype.9" name="carrito"/>
+      </methods>
+      <methods name="setItem">
+        <methodParameters datatypeParameter="//@datatype.13" name="item"/>
+      </methods>
       <attributes name="carrito" visibility="private" datatypeAttribute="//@datatype.9">
         <annotateAttribute name="@Id"/>
         <annotateAttribute name="@ManyToOne">
@@ -106,16 +132,26 @@
     <classes name="Item">
       <annotateClass name="@Entity"/>
       <methods name="Item"/>
-      <methods name="getId"/>
-      <methods name="getCantidad"/>
-      <methods name="getName"/>
-      <methods name="getProducto"/>
-      <methods name="getCarritoItems"/>
-      <methods name="setId"/>
-      <methods name="setCantidad"/>
-      <methods name="setName"/>
-      <methods name="setProducto"/>
-      <methods name="setCarritoItems"/>
+      <methods datatypeReturn="//@datatype.0" name="getId"/>
+      <methods datatypeReturn="//@datatype.0" name="getCantidad"/>
+      <methods datatypeReturn="//@datatype.4" name="getName"/>
+      <methods datatypeReturn="//@datatype.7" name="getProducto"/>
+      <methods datatypeReturn="//@datatype.12" name="getCarritoItems"/>
+      <methods name="setId">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
+      </methods>
+      <methods name="setCantidad">
+        <methodParameters datatypeParameter="//@datatype.0" name="cantidad"/>
+      </methods>
+      <methods name="setName">
+        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
+      </methods>
+      <methods name="setProducto">
+        <methodParameters datatypeParameter="//@datatype.7" name="producto"/>
+      </methods>
+      <methods name="setCarritoItems">
+        <methodParameters datatypeParameter="//@datatype.12" name="carritoItems"/>
+      </methods>
       <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
       </attributes>
