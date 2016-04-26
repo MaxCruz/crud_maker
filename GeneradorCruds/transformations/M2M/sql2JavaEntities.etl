@@ -26,6 +26,8 @@ rule Table2Class
 		c.name = t.name;
 		c.visibility = java!Visibility#public;
 		
+		var imports : new OrderedSet;
+		
 		// Define entity attributes
 		c.attributes = t.column.equivalent();
 		
@@ -33,14 +35,19 @@ rule Table2Class
 		var primaryKeyAttributes = c.attributes.select(a|t.primarykey.column.collect(c|c.name).includes(a.name));
 		for (attribute : java!Attribute in primaryKeyAttributes) {
 			attribute.annotateAttribute.add(annotate("@Id"));
+			imports.add("javax.persistence.Id");
 		}
 		
 		// Find many to one relations
 		var foreignKeyAttributes = c.attributes.select(a|t.foreignkey.column.collect(c|c.name).flatten().includes(a.name));
 		for (attribute : java!Attribute in foreignKeyAttributes) {
 			attribute.annotateAttribute.add(annotateManyToOne());
+			imports.add("javax.persistence.ManyToOne");
+			imports.add("javax.persistence.FetchType");
 			attribute.annotateAttribute.add(annotate("@PrimaryKeyJoinColumn"));
+			imports.add("javax.persistence.PrimaryKeyJoinColumn");
 			attribute.annotateAttribute.add(annotate("@PodamExclude"));
+			imports.add("uk.co.jemos.podam.common.PodamExclude");
 			var tableRef = t.foreignkey.select(f|f.column.collect(c|c.name).flatten().includes(attribute.name)).tableRef;
 			attribute.name = tableRef.first().name.toLowerCase();
 			attribute.datatypeAttribute = typeMap.get(attribute.name);
@@ -54,8 +61,12 @@ rule Table2Class
 				attributeOneToMany.datatypeAttribute = typeMap.get(anotherTable.name.firstToLowerCase() + "List");
 				attributeOneToMany.visibility = java!Visibility#private;
 				attributeOneToMany.annotateAttribute.add(annotateOneToMany(t.name.toLowerCase()));
+				imports.add("javax.persistence.OneToMany");
+				imports.add("javax.persistence.CascadeType");
 				attributeOneToMany.annotateAttribute.add(annotate("@PodamExclude"));
+				imports.add("uk.co.jemos.podam.common.PodamExclude");
 				c.attributes.add(attributeOneToMany);
+				imports.add("java.util.List");
 			}
 		}
 		
@@ -70,7 +81,11 @@ rule Table2Class
 		
 		// Annotations
 		c.annotateClass.add(annotate("@Entity"));
+		imports.add("javax.persistence.Entity");
 		
+		for (importString : String in imports) {
+			c.imports.add(getImport(importString));
+		}
 	}
 
 /**
@@ -173,6 +188,12 @@ operation java!Project extractTypes() {
 		self.datatype.add(list);
 		typeMap.put(table.name.firstToLowerCase() + "List", list);
 	}
+}
+
+operation getImport(name : String) : java!Import {
+	var importObject = new java!Import;
+	importObject.name = name;
+	return importObject;
 }
 
 
