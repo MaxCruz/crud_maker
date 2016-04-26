@@ -2,6 +2,7 @@ import "sql2JavaEntities.etl";
 
 pre {
 	"Running ETL".println();
+	var typeMap : new Map;
 }
 
 post {

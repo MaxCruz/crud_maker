@@ -249,6 +249,10 @@
                 <styles xmi:type="notation:FontStyle" xmi:id="_dmFulwpaEeaRO_OlOhnZPA" fontName=".SF NS Text" fontHeight="8"/>
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_dmFumApaEeaRO_OlOhnZPA"/>
               </children>
+              <children xmi:type="notation:Node" xmi:id="_S2EdgAtKEea3aLeKgojO9Q" type="3010" element="_S05Y0AtKEea3aLeKgojO9Q">
+                <styles xmi:type="notation:FontStyle" xmi:id="_S2EdgQtKEea3aLeKgojO9Q" fontName=".SF NS Text" fontHeight="8"/>
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_S2EdggtKEea3aLeKgojO9Q"/>
+              </children>
               <styles xmi:type="notation:SortingStyle" xmi:id="_dl-Z1QpaEeaRO_OlOhnZPA"/>
               <styles xmi:type="notation:FilteringStyle" xmi:id="_dl-Z1gpaEeaRO_OlOhnZPA"/>
             </children>
@@ -925,6 +929,14 @@
           </ownedStyle>
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
         </ownedElements>
+        <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_S05Y0AtKEea3aLeKgojO9Q" name="staticfinal" tooltipText="">
+          <target xmi:type="ecore:EEnumLiteral" href="mmJavaMinimalista.ecore#//Modifier/staticfinal"/>
+          <semanticElements xmi:type="ecore:EEnumLiteral" href="mmJavaMinimalista.ecore#//Modifier/staticfinal"/>
+          <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_S071EAtKEea3aLeKgojO9Q" labelAlignment="LEFT">
+            <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
+          </ownedStyle>
+          <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
+        </ownedElements>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_dlDz0ApaEeaRO_OlOhnZPA" name="Primitive" tooltipText="" outgoingEdges="_dlyzoApaEeaRO_OlOhnZPA" width="12" height="10">
         <target xmi:type="ecore:EClass" href="mmJavaMinimalista.ecore#_cG3xHQm2EeaYqaRqn1lxcQ"/>
@@ -1009,6 +1021,7 @@
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_dlnNcwpaEeaRO_OlOhnZPA" description="_dlnNcApaEeaRO_OlOhnZPA" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_dlnNdApaEeaRO_OlOhnZPA" showIcon="false">
             <customFeatures>labelSize</customFeatures>
+            <labelFormat>bold</labelFormat>
           </centerLabelStyle>
           <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_dlnNdQpaEeaRO_OlOhnZPA" showIcon="false" labelColor="39,76,114">
             <customFeatures>labelSize</customFeatures>
@@ -1113,6 +1126,7 @@
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_dlt7IApaEeaRO_OlOhnZPA" description="_dltUEQpaEeaRO_OlOhnZPA" routingStyle="manhattan" strokeColor="0,0,0">
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_dlt7IQpaEeaRO_OlOhnZPA" showIcon="false">
             <customFeatures>labelSize</customFeatures>
+            <labelFormat>bold</labelFormat>
           </centerLabelStyle>
           <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_dlt7IgpaEeaRO_OlOhnZPA" showIcon="false" labelColor="39,76,114">
             <customFeatures>labelSize</customFeatures>
@@ -1126,6 +1140,7 @@
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_dluiMApaEeaRO_OlOhnZPA" description="_dltUEQpaEeaRO_OlOhnZPA" routingStyle="manhattan" strokeColor="0,0,0">
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_dluiMQpaEeaRO_OlOhnZPA" showIcon="false">
             <customFeatures>labelSize</customFeatures>
+            <labelFormat>bold</labelFormat>
           </centerLabelStyle>
           <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_dluiMgpaEeaRO_OlOhnZPA" showIcon="false" labelColor="39,76,114">
             <customFeatures>labelSize</customFeatures>
@@ -1179,6 +1194,7 @@
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_dlxlgApaEeaRO_OlOhnZPA" description="_dltUEQpaEeaRO_OlOhnZPA" routingStyle="manhattan" strokeColor="0,0,0">
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_dlxlgQpaEeaRO_OlOhnZPA" showIcon="false">
             <customFeatures>labelSize</customFeatures>
+            <labelFormat>bold</labelFormat>
           </centerLabelStyle>
           <endLabelStyle xmi:type="diagram:EndLabelStyle" xmi:id="_dlxlggpaEeaRO_OlOhnZPA" showIcon="false" labelColor="39,76,114">
             <customFeatures>labelSize</customFeatures>

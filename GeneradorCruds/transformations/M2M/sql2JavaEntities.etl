@@ -8,6 +8,7 @@ rule DataBase2Project
 	transform d : sql!DataBase
 	to p : java!Project {
 		p.name = "Crud";
+		p.extractTypes();
 		// This package storage the entity mapping
 		var entitiesPackage = new java!Package;
 		entitiesPackage.name = "entities";
@@ -67,6 +68,7 @@ rule Table2Class
 		
 		// Annotations
 		c.annotateClass.add(annotate("@Entity"));
+		
 	}
 
 /**
@@ -78,6 +80,7 @@ rule Column2Attribute
 	to a : java!Attribute {
 		a.name = c.name;
 		a.visibility = java!Visibility#private;
+		a.datatypeAttribute = typeMap.get(c.type);
 	}
 
 operation java!Attribute getMethods() : java!Method {
@@ -125,3 +128,57 @@ operation annotateOneToMany(mappedBy : String) : java!Annotation {
 	oneToMany.annotationParameters.add(keyValueCascade);
 	return oneToMany;
 }
+
+operation java!Project extractTypes() {
+	var integer : java!Classifier = new java!Primitive;
+	integer.typeName = java!Primitives#int;
+	self.datatype.add(integer);
+	typeMap.put(sql!DataType#int, integer);
+	
+	var boolean : java!Classifier = new java!Primitive;
+	boolean.typeName = java!Primitives#boolean; 
+	self.datatype.add(boolean);
+	typeMap.put(sql!DataType#boolean, boolean);
+	
+	var number : java!Classifier = new java!Primitive;
+	number.typeName = java!Primitives#float; 
+	self.datatype.add(number);
+	typeMap.put(sql!DataType#number, number);
+	
+	var date : java!Classifier = new java!DataType;
+	date.name = "Date";
+	self.datatype.add(date);
+	typeMap.put(sql!DataType#date, date);
+	
+	var string : java!Classifier = new java!DataType;
+	string.name = "String";
+	self.datatype.add(string);
+	typeMap.put(sql!DataType#varchar, string);
+}
+
+operation getAttributeType(type) : java!Classifier {
+	switch(type) {
+		case sql!DataType#int :
+			var integer : java!Classifier = new java!Primitive;
+			integer.typeName = java!Primitives#int;
+			return integer;
+		case sql!DataType#boolean :
+			var boolean : java!Classifier = new java!Primitive;
+			boolean.typeName = java!Primitives#boolean; 
+			return boolean;
+		case sql!DataType#number :
+			var number : java!Classifier = new java!Primitive;
+			number.typeName = java!Primitives#float;
+			return number;
+		case sql!DataType#date :
+			var date : java!Classifier = new java!DataType;
+			date.name = "Date";
+			return date;
+		case sql!DataType#varchar :
+			var string : java!Classifier = new java!DataType;
+			string.name = "String";
+			return string;
+	}
+}
+
+

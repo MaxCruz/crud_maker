@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<mmJavaMinimalista:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mmJavaMinimalista="http://uniandes.edu.co/mmJavaMinimalista" name="Crud">
+<mmJavaMinimalista:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mmJavaMinimalista="http://uniandes.edu.co/mmJavaMinimalista" name="Crud">
   <packages name="entities">
     <classes name="Client">
       <annotateClass name="@Entity"/>
@@ -12,11 +12,11 @@
       <methods name="setPassword"/>
       <methods name="setName"/>
       <methods name="setCarritos"/>
-      <attributes name="id" visibility="private">
+      <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
       </attributes>
-      <attributes name="password" visibility="private"/>
-      <attributes name="name" visibility="private"/>
+      <attributes name="password" visibility="private" datatypeAttribute="//@datatype.4"/>
+      <attributes name="name" visibility="private" datatypeAttribute="//@datatype.4"/>
       <attributes name="carritos" visibility="private">
         <annotateAttribute name="@OneToMany">
           <annotationParameters key="mappedBy" value="client"/>
@@ -34,8 +34,8 @@
       <methods name="setName"/>
       <methods name="setId"/>
       <methods name="setItems"/>
-      <attributes name="name" visibility="private"/>
-      <attributes name="id" visibility="private">
+      <attributes name="name" visibility="private" datatypeAttribute="//@datatype.4"/>
+      <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
       </attributes>
       <attributes name="items" visibility="private">
@@ -57,11 +57,11 @@
       <methods name="setName"/>
       <methods name="setClient"/>
       <methods name="setCarritoItems"/>
-      <attributes name="id" visibility="private">
+      <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
       </attributes>
-      <attributes name="name" visibility="private"/>
-      <attributes name="client" visibility="private">
+      <attributes name="name" visibility="private" datatypeAttribute="//@datatype.4"/>
+      <attributes name="client" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@ManyToOne">
           <annotationParameters key="fetch" value="FetchType.LAZY"/>
           <annotationParameters key="cascade" value="CascadeType.PERSIST"/>
@@ -84,7 +84,7 @@
       <methods name="getItem"/>
       <methods name="setCarrito"/>
       <methods name="setItem"/>
-      <attributes name="carrito" visibility="private">
+      <attributes name="carrito" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
         <annotateAttribute name="@ManyToOne">
           <annotationParameters key="fetch" value="FetchType.LAZY"/>
@@ -93,7 +93,7 @@
         <annotateAttribute name="@PrimaryKeyJoinColumn"/>
         <annotateAttribute name="@PodamExclude"/>
       </attributes>
-      <attributes name="item" visibility="private">
+      <attributes name="item" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
         <annotateAttribute name="@ManyToOne">
           <annotationParameters key="fetch" value="FetchType.LAZY"/>
@@ -116,12 +116,12 @@
       <methods name="setName"/>
       <methods name="setProducto"/>
       <methods name="setCarritoItems"/>
-      <attributes name="id" visibility="private">
+      <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
       </attributes>
-      <attributes name="cantidad" visibility="private"/>
-      <attributes name="name" visibility="private"/>
-      <attributes name="producto" visibility="private">
+      <attributes name="cantidad" visibility="private" datatypeAttribute="//@datatype.0"/>
+      <attributes name="name" visibility="private" datatypeAttribute="//@datatype.4"/>
+      <attributes name="producto" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@ManyToOne">
           <annotationParameters key="fetch" value="FetchType.LAZY"/>
           <annotationParameters key="cascade" value="CascadeType.PERSIST"/>
@@ -138,4 +138,9 @@
       </attributes>
     </classes>
   </packages>
+  <datatype xsi:type="mmJavaMinimalista:Primitive"/>
+  <datatype xsi:type="mmJavaMinimalista:Primitive" typeName="String"/>
+  <datatype xsi:type="mmJavaMinimalista:Primitive" typeName="float"/>
+  <datatype name="Date"/>
+  <datatype name="String"/>
 </mmJavaMinimalista:Project>
