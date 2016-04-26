@@ -49,6 +49,18 @@ operation java!Project extractTypes() {
 		self.datatype.add(list);
 		typeMap.put(table.name.firstToLowerCase() + "List", list);
 	}
+	
+	// Add MarketPlace type
+	var mp : java!Classifier = new java!DataType;
+	mp.name = "MarketPlace";
+	self.datatype.add(mp);
+	typeMap.put("mp", mp);
+		
+	// Add PodamFactory type
+	var factory : java!Classifier = new java!DataType;
+	factory.name = "PodamFactory";
+	self.datatype.add(factory);
+	typeMap.put("factory", factory);
 }
 
 /**
@@ -67,4 +79,14 @@ operation getImport(name : String) : java!Import {
 	var importObject = new java!Import;
 	importObject.name = name;
 	return importObject;
+}
+
+/**
+* This operation give an method element for the string parameter
+*/
+operation getMethod(name : String) : java!Method {
+	var method = new java!Method;
+	method.name = name;
+	method.visibility = java!Visibility#public;
+	return method;
 }

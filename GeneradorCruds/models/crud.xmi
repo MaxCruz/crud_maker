@@ -212,11 +212,116 @@
   </packages>
   <packages name="marketplace"/>
   <packages name="test.java">
-    <classes name="ClientTest"/>
-    <classes name="ProductoTest"/>
-    <classes name="CarritoTest"/>
-    <classes name="CarritoItemTest"/>
-    <classes name="ItemTest"/>
+    <classes name="ClientTest">
+      <annotateClass name="@FixMethodOrder">
+        <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
+      </annotateClass>
+      <methods name="prepareTest">
+        <annotateMethod name="@Before"/>
+      </methods>
+      <methods name="test1ClientAdd">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test2GetClient">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test3ClientEdit">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test4ClientDelete">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
+      <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
+    </classes>
+    <classes name="ProductoTest">
+      <annotateClass name="@FixMethodOrder">
+        <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
+      </annotateClass>
+      <methods name="prepareTest">
+        <annotateMethod name="@Before"/>
+      </methods>
+      <methods name="test1ProductoAdd">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test2GetProducto">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test3ProductoEdit">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test4ProductoDelete">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
+      <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
+    </classes>
+    <classes name="CarritoTest">
+      <annotateClass name="@FixMethodOrder">
+        <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
+      </annotateClass>
+      <methods name="prepareTest">
+        <annotateMethod name="@Before"/>
+      </methods>
+      <methods name="test1CarritoAdd">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test2GetCarrito">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test3CarritoEdit">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test4CarritoDelete">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
+      <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
+    </classes>
+    <classes name="CarritoItemTest">
+      <annotateClass name="@FixMethodOrder">
+        <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
+      </annotateClass>
+      <methods name="prepareTest">
+        <annotateMethod name="@Before"/>
+      </methods>
+      <methods name="test1CarritoItemAdd">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test2GetCarritoItem">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test3CarritoItemEdit">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test4CarritoItemDelete">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
+      <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
+    </classes>
+    <classes name="ItemTest">
+      <annotateClass name="@FixMethodOrder">
+        <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
+      </annotateClass>
+      <methods name="prepareTest">
+        <annotateMethod name="@Before"/>
+      </methods>
+      <methods name="test1ItemAdd">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test2GetItem">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test3ItemEdit">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <methods name="test4ItemDelete">
+        <annotateMethod name="@Test"/>
+      </methods>
+      <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
+      <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
+    </classes>
   </packages>
   <datatype xsi:type="mmJavaMinimalista:Primitive"/>
   <datatype xsi:type="mmJavaMinimalista:Primitive" typeName="String"/>
@@ -233,4 +338,6 @@
   <datatype xsi:type="mmJavaMinimalista:ListType" name="CarritoItem"/>
   <datatype name="Item"/>
   <datatype xsi:type="mmJavaMinimalista:ListType" name="Item"/>
+  <datatype name="MarketPlace"/>
+  <datatype name="PodamFactory"/>
 </mmJavaMinimalista:Project>
