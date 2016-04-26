@@ -43,6 +43,7 @@ rule Table2Class
 			attribute.annotateAttribute.add(annotate("@PodamExclude"));
 			var tableRef = t.foreignkey.select(f|f.column.collect(c|c.name).flatten().includes(attribute.name)).tableRef;
 			attribute.name = tableRef.first().name.toLowerCase();
+			attribute.datatypeAttribute = typeMap.get(attribute.name);
 		}
 		
 		// Find one to many relations
@@ -50,6 +51,7 @@ rule Table2Class
 			for(foreignKey : ForeignKey in anotherTable.foreignkey.select(f|f.tableRef.name == t.name)) {
 				var attributeOneToMany = new java!Attribute;
 				attributeOneToMany.name = anotherTable.name.firstToLowerCase() + "s";
+				attributeOneToMany.datatypeAttribute = typeMap.get(anotherTable.name.firstToLowerCase() + "List");
 				attributeOneToMany.visibility = java!Visibility#private;
 				attributeOneToMany.annotateAttribute.add(annotateOneToMany(t.name.toLowerCase()));
 				attributeOneToMany.annotateAttribute.add(annotate("@PodamExclude"));
@@ -154,30 +156,17 @@ operation java!Project extractTypes() {
 	string.name = "String";
 	self.datatype.add(string);
 	typeMap.put(sql!DataType#varchar, string);
-}
-
-operation getAttributeType(type) : java!Classifier {
-	switch(type) {
-		case sql!DataType#int :
-			var integer : java!Classifier = new java!Primitive;
-			integer.typeName = java!Primitives#int;
-			return integer;
-		case sql!DataType#boolean :
-			var boolean : java!Classifier = new java!Primitive;
-			boolean.typeName = java!Primitives#boolean; 
-			return boolean;
-		case sql!DataType#number :
-			var number : java!Classifier = new java!Primitive;
-			number.typeName = java!Primitives#float;
-			return number;
-		case sql!DataType#date :
-			var date : java!Classifier = new java!DataType;
-			date.name = "Date";
-			return date;
-		case sql!DataType#varchar :
-			var string : java!Classifier = new java!DataType;
-			string.name = "String";
-			return string;
+	
+	for (table : Table in sql!Table.all()) {
+		var type : java!Classifier = new java!DataType;
+		type.name = table.name;
+		self.datatype.add(type);
+		typeMap.put(table.name.firstToLowerCase(), type);
+		
+		var list : java!Classifier = new java!ListType;
+		list.name = table.name;
+		self.datatype.add(list);
+		typeMap.put(table.name.firstToLowerCase() + "List", list);
 	}
 }
 

@@ -17,7 +17,7 @@
       </attributes>
       <attributes name="password" visibility="private" datatypeAttribute="//@datatype.4"/>
       <attributes name="name" visibility="private" datatypeAttribute="//@datatype.4"/>
-      <attributes name="carritos" visibility="private">
+      <attributes name="carritos" visibility="private" datatypeAttribute="//@datatype.10">
         <annotateAttribute name="@OneToMany">
           <annotationParameters key="mappedBy" value="client"/>
           <annotationParameters key="cascade" value="CascadeType.ALL"/>
@@ -38,7 +38,7 @@
       <attributes name="id" visibility="private" datatypeAttribute="//@datatype.0">
         <annotateAttribute name="@Id"/>
       </attributes>
-      <attributes name="items" visibility="private">
+      <attributes name="items" visibility="private" datatypeAttribute="//@datatype.14">
         <annotateAttribute name="@OneToMany">
           <annotationParameters key="mappedBy" value="producto"/>
           <annotationParameters key="cascade" value="CascadeType.ALL"/>
@@ -61,7 +61,7 @@
         <annotateAttribute name="@Id"/>
       </attributes>
       <attributes name="name" visibility="private" datatypeAttribute="//@datatype.4"/>
-      <attributes name="client" visibility="private" datatypeAttribute="//@datatype.0">
+      <attributes name="client" visibility="private" datatypeAttribute="//@datatype.5">
         <annotateAttribute name="@ManyToOne">
           <annotationParameters key="fetch" value="FetchType.LAZY"/>
           <annotationParameters key="cascade" value="CascadeType.PERSIST"/>
@@ -69,7 +69,7 @@
         <annotateAttribute name="@PrimaryKeyJoinColumn"/>
         <annotateAttribute name="@PodamExclude"/>
       </attributes>
-      <attributes name="carritoItems" visibility="private">
+      <attributes name="carritoItems" visibility="private" datatypeAttribute="//@datatype.12">
         <annotateAttribute name="@OneToMany">
           <annotationParameters key="mappedBy" value="carrito"/>
           <annotationParameters key="cascade" value="CascadeType.ALL"/>
@@ -84,7 +84,7 @@
       <methods name="getItem"/>
       <methods name="setCarrito"/>
       <methods name="setItem"/>
-      <attributes name="carrito" visibility="private" datatypeAttribute="//@datatype.0">
+      <attributes name="carrito" visibility="private" datatypeAttribute="//@datatype.9">
         <annotateAttribute name="@Id"/>
         <annotateAttribute name="@ManyToOne">
           <annotationParameters key="fetch" value="FetchType.LAZY"/>
@@ -93,7 +93,7 @@
         <annotateAttribute name="@PrimaryKeyJoinColumn"/>
         <annotateAttribute name="@PodamExclude"/>
       </attributes>
-      <attributes name="item" visibility="private" datatypeAttribute="//@datatype.0">
+      <attributes name="item" visibility="private" datatypeAttribute="//@datatype.13">
         <annotateAttribute name="@Id"/>
         <annotateAttribute name="@ManyToOne">
           <annotationParameters key="fetch" value="FetchType.LAZY"/>
@@ -121,7 +121,7 @@
       </attributes>
       <attributes name="cantidad" visibility="private" datatypeAttribute="//@datatype.0"/>
       <attributes name="name" visibility="private" datatypeAttribute="//@datatype.4"/>
-      <attributes name="producto" visibility="private" datatypeAttribute="//@datatype.0">
+      <attributes name="producto" visibility="private" datatypeAttribute="//@datatype.7">
         <annotateAttribute name="@ManyToOne">
           <annotationParameters key="fetch" value="FetchType.LAZY"/>
           <annotationParameters key="cascade" value="CascadeType.PERSIST"/>
@@ -129,7 +129,7 @@
         <annotateAttribute name="@PrimaryKeyJoinColumn"/>
         <annotateAttribute name="@PodamExclude"/>
       </attributes>
-      <attributes name="carritoItems" visibility="private">
+      <attributes name="carritoItems" visibility="private" datatypeAttribute="//@datatype.12">
         <annotateAttribute name="@OneToMany">
           <annotationParameters key="mappedBy" value="item"/>
           <annotationParameters key="cascade" value="CascadeType.ALL"/>
@@ -143,4 +143,14 @@
   <datatype xsi:type="mmJavaMinimalista:Primitive" typeName="float"/>
   <datatype name="Date"/>
   <datatype name="String"/>
+  <datatype name="Client"/>
+  <datatype xsi:type="mmJavaMinimalista:ListType" name="Client"/>
+  <datatype name="Producto"/>
+  <datatype xsi:type="mmJavaMinimalista:ListType" name="Producto"/>
+  <datatype name="Carrito"/>
+  <datatype xsi:type="mmJavaMinimalista:ListType" name="Carrito"/>
+  <datatype name="CarritoItem"/>
+  <datatype xsi:type="mmJavaMinimalista:ListType" name="CarritoItem"/>
+  <datatype name="Item"/>
+  <datatype xsi:type="mmJavaMinimalista:ListType" name="Item"/>
 </mmJavaMinimalista:Project>
