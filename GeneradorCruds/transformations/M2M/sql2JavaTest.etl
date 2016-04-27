@@ -22,7 +22,7 @@ operation java!Class testEntityClass() : java!Class {
 	
 	// Add general required imports for test class
 	testClass.imports.add(getImport("static org.junit.Assert.*"));
-	testClass.imports.add(getImport("marketplace." + self.name));
+	testClass.imports.add(getImport("entities." + self.name));
 	testClass.imports.add(getImport("marketplace.MarketPlace"));
 	testClass.imports.add(getImport("org.junit.FixMethodOrder"));
 	testClass.imports.add(getImport("org.junit.runners.MethodSorters"));
