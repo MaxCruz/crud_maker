@@ -1,4 +1,6 @@
-
+/**
+* Create an parsistence manager for all entities
+*/
 operation java!Package entityManager() : java!Class {
 	var entityManager = new java!Class;
 	entityManager.name = "MarketPlace";
@@ -12,6 +14,9 @@ operation java!Package entityManager() : java!Class {
 		entityManager.addEntityManagerMethods(class);
 	}
 	
+	// Register imports
+	entityManager.addMarketPlaceImports();
+	
 	return entityManager;
 }
 
@@ -24,7 +29,7 @@ operation java!Class addEntityManagerAttributes() {
 	persistence.name = "PERSISTENCE_UNIT_NAME";
 	persistence.visibility = java!Visibility#private;
 	persistence.modifier = java!Modifier#staticfinal;
-	persistence.value = "MarketPlace-Test";
+	persistence.value = "\"MarketPlace-Test\"";
 	persistence.datatypeAttribute = typeMap.get(sql!DataType#varchar);
 	self.attributes.add(persistence);
 	
@@ -44,6 +49,9 @@ operation java!Class addEntityManagerAttributes() {
 	self.attributes.add(entityManager);
 }
 
+/**
+* Methods for entity manager
+*/
 operation java!Class addEntityManagerMethods(entity : java!Class) {
 	// Get entitiy object list
 	var getList = new java!Method;
@@ -63,38 +71,57 @@ operation java!Class addEntityManagerMethods(entity : java!Class) {
 	add.methodParameters.add(addParameter);
 	self.methods.add(add);
 	
-	// Find annotated ID
-	var foundId = entity.findId();
-	
 	// Edit entity object
 	var edit = new java!Method;
 	edit.name = "edit" + entity.name;
 	edit.visibility = java!Visibility#public;
+	// Entity attributes as edit parameters
+	for (attribute : java!Attribute in entity.attributes) {
 	
-	
-	// Edit ID parameters
-	for (attribute : java!Attribute in foundId) {
-		var editParameterId = new java!Parameter;
-		editParameterId.name = attribute.name;
-		editParameterId.datatypeParameter = attribute.datatypeAttribute;
-		edit.methodParameters.add(editParameterId);
+		if (attribute.datatypeAttribute.isTypeOf(java!ListType) <> true) {
+			var editParameter = new java!Parameter;
+			editParameter.name = attribute.name;
+			editParameter.datatypeParameter = attribute.datatypeAttribute;
+			edit.methodParameters.add(editParameter);
+		} 
 	}
-	// Edit object parameter 
-	var editParameter = new java!Parameter;
-	editParameter.name = entity.name.firstToLowerCase();
-	editParameter.datatypeParameter = typeMap.get(entity.name.firstToLowerCase());
-	edit.methodParameters.add(editParameter);
 	self.methods.add(edit);
 	
+	// Delete entity object
+	var del = new java!Method;
+	del.name = "delete" + entity.name;
+	del.visibility = java!Visibility#public;
+	for (attribute : java!Attribute in entity.findId()) {
+		var delParameter = new java!Parameter;
+		delParameter.name = attribute.name;
+		delParameter.datatypeParameter = attribute.datatypeAttribute;
+		del.methodParameters.add(delParameter);
+	}
+	self.methods.add(del);
 	
-	
-	
-	
-	//public void editCarrito(int id, String name, Client client)
-	
-	//public void deleteCarrito(int id)
-	
-	//public Carrito getCarrito(int id)
-	
+	// Get just one entity
+	var get = new java!Method;
+	get.name = "get" + entity.name;
+	get.visibility = java!Visibility#public;
+	get.datatypeReturn = typeMap.get(entity.name.firstToLowerCase());
+	for (attribute : java!Attribute in entity.findId()) {
+		var getParameter = new java!Parameter;
+		getParameter.name = attribute.name;
+		getParameter.datatypeParameter = attribute.datatypeAttribute;
+		get.methodParameters.add(getParameter);
+	}
+	self.methods.add(get);
+}
+
+/**
+* Required imports  
+*/
+operation java!Class addMarketPlaceImports() {
+	// Add required imports
+	self.imports.add(getImport("java.util.List"));
+	self.imports.add(getImport("javax.persistence.EntityManager"));
+	self.imports.add(getImport("javax.persistence.EntityManagerFactory"));
+	self.imports.add(getImport("javax.persistence.Persistence"));
+	self.imports.add(getImport("javax.persistence.Query"));
 }
 

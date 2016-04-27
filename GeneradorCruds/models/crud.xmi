@@ -214,15 +214,28 @@
       </methods>
       <methods name="editClient">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
-        <methodParameters datatypeParameter="//@datatype.5" name="client"/>
+        <methodParameters datatypeParameter="//@datatype.4" name="password"/>
+        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
+      </methods>
+      <methods name="deleteClient">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
+      </methods>
+      <methods datatypeReturn="//@datatype.5" name="getClient">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
       </methods>
       <methods datatypeReturn="//@datatype.8" name="getProductos"/>
       <methods name="addProducto">
         <methodParameters datatypeParameter="//@datatype.7" name="producto"/>
       </methods>
       <methods name="editProducto">
+        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
-        <methodParameters datatypeParameter="//@datatype.7" name="producto"/>
+      </methods>
+      <methods name="deleteProducto">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
+      </methods>
+      <methods datatypeReturn="//@datatype.7" name="getProducto">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
       </methods>
       <methods datatypeReturn="//@datatype.10" name="getCarritos"/>
       <methods name="addCarrito">
@@ -230,7 +243,14 @@
       </methods>
       <methods name="editCarrito">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
-        <methodParameters datatypeParameter="//@datatype.9" name="carrito"/>
+        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
+        <methodParameters datatypeParameter="//@datatype.5" name="client"/>
+      </methods>
+      <methods name="deleteCarrito">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
+      </methods>
+      <methods datatypeReturn="//@datatype.9" name="getCarrito">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
       </methods>
       <methods datatypeReturn="//@datatype.12" name="getCarritoItems"/>
       <methods name="addCarritoItem">
@@ -239,7 +259,14 @@
       <methods name="editCarritoItem">
         <methodParameters datatypeParameter="//@datatype.9" name="carrito"/>
         <methodParameters datatypeParameter="//@datatype.13" name="item"/>
-        <methodParameters datatypeParameter="//@datatype.11" name="carritoItem"/>
+      </methods>
+      <methods name="deleteCarritoItem">
+        <methodParameters datatypeParameter="//@datatype.9" name="carrito"/>
+        <methodParameters datatypeParameter="//@datatype.13" name="item"/>
+      </methods>
+      <methods datatypeReturn="//@datatype.11" name="getCarritoItem">
+        <methodParameters datatypeParameter="//@datatype.9" name="carrito"/>
+        <methodParameters datatypeParameter="//@datatype.13" name="item"/>
       </methods>
       <methods datatypeReturn="//@datatype.14" name="getItems"/>
       <methods name="addItem">
@@ -247,11 +274,24 @@
       </methods>
       <methods name="editItem">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
-        <methodParameters datatypeParameter="//@datatype.13" name="item"/>
+        <methodParameters datatypeParameter="//@datatype.0" name="cantidad"/>
+        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
+        <methodParameters datatypeParameter="//@datatype.7" name="producto"/>
       </methods>
-      <attributes name="PERSISTENCE_UNIT_NAME" visibility="private" datatypeAttribute="//@datatype.4" modifier="static final" value="MarketPlace-Test"/>
+      <methods name="deleteItem">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
+      </methods>
+      <methods datatypeReturn="//@datatype.13" name="getItem">
+        <methodParameters datatypeParameter="//@datatype.0" name="id"/>
+      </methods>
+      <attributes name="PERSISTENCE_UNIT_NAME" visibility="private" datatypeAttribute="//@datatype.4" modifier="static final" value="&quot;MarketPlace-Test&quot;"/>
       <attributes name="emf" visibility="private" datatypeAttribute="//@datatype.17" modifier="static"/>
       <attributes name="em" visibility="private" datatypeAttribute="//@datatype.18"/>
+      <imports name="java.util.List"/>
+      <imports name="javax.persistence.EntityManager"/>
+      <imports name="javax.persistence.EntityManagerFactory"/>
+      <imports name="javax.persistence.Persistence"/>
+      <imports name="javax.persistence.Query"/>
     </classes>
   </packages>
   <packages name="test.java">
