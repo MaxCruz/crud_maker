@@ -62,10 +62,11 @@ import [%= importElement.name %];
 			[%var entityName = methodElement.name.substring(3); %]
 			// get singular [%= entityName%]
 			[% if (entities.selectByName(entityName).attributes->one(a | a.name=='id') ){%]
-			return [%= em.name%].find([%= entityName%].class, id);
+				return [%= em.name%].find([%= entityName%].class, id);
 			[%}%]
 			[%else {%]
-			return null;
+				// NO contiene campo id definido. Corrija para generar cuerpo del metodo
+				return null;
 			[%}%]
 		}
 		[%}%]
@@ -73,24 +74,45 @@ import [%= importElement.name %];
 		{
 			[%var entityName = methodElement.name.substring(3); %]
 			// add body [%= entityName%]
+			[%= em.name%].getTransaction().begin();
+        	[%= em.name%].persist([%= entityName.firstToLowerCase()%]);
+        	[%= em.name%].getTransaction().commit();
 		}
 		[%}%]
 		[%if (methodElement.name.startsWith('edit') ){%]
 		{
 			[%var entityName = methodElement.name.substring(4); %]
 			// edit body [%= entityName%]
+			[% if (entities.selectByName(entityName).attributes->one(a | a.name=='id') ){%]
+				[%= entityName%] [%= entityName.firstToLowerCase()%] = [%= em.name%].find([%= entityName%].class, id);
+				[%= em.name%].getTransaction().begin();
+				[% for (attribute in entities.selectByName(entityName).attributes) {%]
+					[% if (attribute.name <>'id' and (not attribute.datatypeAttribute.isTypeOf(java!ListType))){%]
+					[%= entityName.firstToLowerCase()%].set[%= attribute.name.firstToUpperCase()%]([%= attribute.name%]);
+					[%}%]
+				[%}%]
+				[%= em.name%].getTransaction().commit();
+			[%}%]
+			[%else {%]
+				// NO contiene campo id definido. Corrija para generar cuerpo del metodo
+			[%}%]
 		}
 		[%}%]
 		[%if (methodElement.name.startsWith('delete') ){%]
 		{
 			[%var entityName = methodElement.name.substring(6); %]
 			// delete body [%= entityName%]
+			[% if (entities.selectByName(entityName).attributes->one(a | a.name=='id') ){%]
+				[%= entityName%] [%= entityName.firstToLowerCase()%] = [%= em.name%].find([%= entityName%].class, id);
+				[%= em.name%].getTransaction().begin();
+				[%= em.name%].remove([%= entityName.firstToLowerCase()%]);
+				[%= em.name%].getTransaction().commit();
+			[%}%]
+			[%else {%]
+				// NO contiene campo id definido. Corrija para generar cuerpo del metodo
+			[%}%]
 		}
 		[%}%]
 	[%}%]	
-	
-	[**[%= entities.selectByName('Carrito')%]**]
-	
-	
 	
 }
