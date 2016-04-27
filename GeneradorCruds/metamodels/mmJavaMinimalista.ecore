@@ -214,6 +214,7 @@
         <details xmi:id="_cG3KiQm2EeaYqaRqn1lxcQ" key="uuid" value="_kPtqsNhREDO0x4Or-3wTcQ"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" xmi:id="_cG3Kiwm2EeaYqaRqn1lxcQ" name="Classifier">
     <eAnnotations xmi:id="_cG3KjAm2EeaYqaRqn1lxcQ" source="genmymodel">

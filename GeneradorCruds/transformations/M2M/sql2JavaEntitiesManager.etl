@@ -79,11 +79,18 @@ operation java!Class addEntityManagerMethods(entity : java!Class) {
 	edit.name = "edit" + entity.name;
 	edit.visibility = java!Visibility#public;
 	// Entity attributes as edit parameters
+	var order = 1;
 	for (attribute : java!Attribute in entity.attributes) {
-	
 		if (attribute.datatypeAttribute.isTypeOf(java!ListType) <> true) {
 			var editParameter = new java!Parameter;
 			editParameter.name = attribute.name;
+			var isId = attribute.select(a|a.annotateAttribute.collect(i|i.name).contains("@Id")).size();
+			if (isId == 1) {
+				editParameter.order = 0;
+			} else {
+				editParameter.order = order;
+				order = order + 1;
+			}
 			editParameter.datatypeParameter = attribute.datatypeAttribute;
 			edit.methodParameters.add(editParameter);
 		} 
