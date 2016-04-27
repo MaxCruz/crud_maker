@@ -9,7 +9,7 @@ operation java!Class testEntityClass() : java!Class {
 	
 	// Add FixMethodOrder annotation
 	var keyValue = new java!KeyValue;
-	keyValue.key = "MethodSorters.NAME_ASCENDING";
+	keyValue.value = "MethodSorters.NAME_ASCENDING";
 	var methodOrder = getAnnotation("@FixMethodOrder");
 	methodOrder.annotationParameters.add(keyValue);
 	testClass.annotateClass.add(methodOrder);

@@ -83,7 +83,7 @@ import [%= importElement.name %];
 			[%= mp.name%].edit[%= entityName%](primerId, [%= entity.gettersAsParamsText()%]);
 			
 			[% for (attribute in entity.attributes) {%]
-				[% var idText:String = entityName.firstToLowerCase()+'.getId()';%]
+				[% var idText:String = 'primerId';%]
 				[% if (attribute.name <>'id' and not attribute.datatypeAttribute.isTypeOf(java!ListType)){%]
 			    [%= entity.createAssertEquals(attribute, mp, idText)%]
 			    [%}%]

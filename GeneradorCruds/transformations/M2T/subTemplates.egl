@@ -76,7 +76,7 @@ busqueda ejecutada por el entitiesmanager para la comparacion.
  **]
 [% @template
 operation Class createAssertEquals(attrToCompare:Attribute, mp:Attribute, idText:String ){%]
-assertEquals([%= self.name.firstToLowerCase()%].get[%=attrToCompare.name.firstToUpperCase()%](), [%= mp.name%].get[%= self.name.firstToUpperCase()%]([%= idText%] ).get[%=attrToCompare.name.firstToUpperCase()%]());[%
+assertEquals([%= self.name.firstToLowerCase()%].get[%=attrToCompare.name.firstToUpperCase()%](), [%= mp.name%].get[%= self.name.firstToUpperCase()%]([%= idText%]).get[%=attrToCompare.name.firstToUpperCase()%]());[%
 }%]
 
 [**Subtemplate para manufacturar y poblar un pojo, el contexto debe ser una clase entity**]

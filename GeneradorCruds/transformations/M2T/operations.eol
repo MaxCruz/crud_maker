@@ -72,7 +72,7 @@ Retorna los parametros de un metodo en formato de una linea y separados por coma
 */
 operation Method getTextRepresentationForMethodParameters():String{
 	var textParameters:String = "";
-		for (parameter in self.methodParameters) {
+		for (parameter in self.methodParameters.asSequence()->sortBy(m | m.order)) {
 			textParameters = textParameters + parameter.datatypeParameter.getTypeAsText()+" " +parameter.name;
 			if (hasMore) {
 				textParameters = textParameters + ", "; 	

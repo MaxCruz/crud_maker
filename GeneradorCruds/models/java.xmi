@@ -282,7 +282,7 @@
   <packages name="test">
     <classes name="ClientTest">
       <annotateClass name="@FixMethodOrder">
-        <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
+        <annotationParameters value="MethodSorters.NAME_ASCENDING"/>
       </annotateClass>
       <methods name="prepareTest">
         <annotateMethod name="@Before"/>
@@ -313,7 +313,7 @@
     </classes>
     <classes name="ProductoTest">
       <annotateClass name="@FixMethodOrder">
-        <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
+        <annotationParameters value="MethodSorters.NAME_ASCENDING"/>
       </annotateClass>
       <methods name="prepareTest">
         <annotateMethod name="@Before"/>
@@ -344,7 +344,7 @@
     </classes>
     <classes name="CarritoTest">
       <annotateClass name="@FixMethodOrder">
-        <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
+        <annotationParameters value="MethodSorters.NAME_ASCENDING"/>
       </annotateClass>
       <methods name="prepareTest">
         <annotateMethod name="@Before"/>
@@ -375,7 +375,7 @@
     </classes>
     <classes name="ItemTest">
       <annotateClass name="@FixMethodOrder">
-        <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
+        <annotationParameters value="MethodSorters.NAME_ASCENDING"/>
       </annotateClass>
       <methods name="prepareTest">
         <annotateMethod name="@Before"/>
