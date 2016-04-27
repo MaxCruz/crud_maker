@@ -48,11 +48,11 @@ import [%= importElement.name %];
 		[%}%]
 		[%if (methodElement.name.startsWith('test1') and  methodElement.name.endsWith('Add')){%]
 		{
-			[%var entityName = methodElement.name.substring(5, (methodElement.name.length()-3)); %]
+			[%var entityName = methodElement.name.substring('test1'.length(), (methodElement.name.length()-'Add'.length())); %]
 			[%var entity = entities.selectByName(entityName); %]
 			//test1 Add [%= entityName%]
-			[%=entity.getTypeAsText()%] [%= entityName.firstToLowerCase()%] = [%= factory.name%].manufacturePojo([%=entity.getTypeAsText()%].class);
-			[%= factory.name%].populatePojo([%= entityName.firstToLowerCase()%]);
+			[%= entity.manufactureAndPopulatePojo(factory)%]
+			
 			[%= mp.name%].add[%= entityName%]([%= entityName.firstToLowerCase()%]);
 			
 			[% for (attribute in entity.attributes) {%]
@@ -63,19 +63,46 @@ import [%= importElement.name %];
 			[%}%]
 		}
 		[%}%]
-		[%if (methodElement.name.startsWith('test2')){%]
+		[%if (methodElement.name.startsWith('test2Get')){%]
 		{
-			//test2 Get Singular
+			[%var entityName = methodElement.name.substring('test2Get'.length()); %]
+			[%var entity = entities.selectByName(entityName); %]
+			//test2 Get Singular [%= entityName%]
+			assertNotNull([%= mp.name%].get[%= entityName%]([%= mp.name%].get[%= entityName%]s().get(0).getId()));
 		}
 		[%}%]
-		[%if (methodElement.name.startsWith('test3')){%]
+		[%if (methodElement.name.startsWith('test3') and  methodElement.name.endsWith('Edit')){%]
 		{
-			//test3 Edit
+			[%var entityName = methodElement.name.substring('test3'.length(), (methodElement.name.length()-'Edit'.length())); %]
+			[%var entity = entities.selectByName(entityName); %]
+			//test3 Edit [%= entityName%]
+			[%= entity.manufactureAndPopulatePojo(factory)%]
+			
+			int primerId = mp.get[%= entityName%]s().get(0).getId();
+			
+			[%= mp.name%].edit[%= entityName%](primerId, [%= entity.gettersAsParamsText()%]);
+			
+			[% for (attribute in entity.attributes) {%]
+				[% var idText:String = entityName.firstToLowerCase()+'.getId()';%]
+				[% if (attribute.name <>'id' and not attribute.datatypeAttribute.isTypeOf(java!ListType)){%]
+			    [%= entity.createAssertEquals(attribute, mp, idText)%]
+			    [%}%]
+			[%}%]
+			
 		}
 		[%}%]
-		[%if (methodElement.name.startsWith('test4')){%]
+		[%if (methodElement.name.startsWith('test4') and  methodElement.name.endsWith('Delete')){%]
 		{
-			//test4 Delete
+			[%var entityName = methodElement.name.substring('test4'.length(), (methodElement.name.length()-'Delete'.length())); %]
+			[%var entity = entities.selectByName(entityName); %]
+			//test4 Delete [%= entityName%]
+			int primerId = [%= mp.name%].get[%= entityName%]s().get(0).getId();
+		
+			assertNotNull([%= mp.name%].get[%= entityName%](primerId));
+		
+			[%= mp.name%].delete[%= entityName%](primerId);
+		
+			assertNull([%= mp.name%].get[%= entityName%](primerId));
 		}
 		[%}%]
 	[%}%]

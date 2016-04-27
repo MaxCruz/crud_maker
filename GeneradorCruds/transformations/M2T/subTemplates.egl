@@ -68,11 +68,35 @@ operation Method annotationsText(){
 	[%}
 }%]
 
-[**SubTemplate para crear un AssertEquals
-//idText = texto de la varible o text de la operacion para obtener un id de busqueda 
-de un elmento en el entitiesmanager para la comparacion
+[**SubTemplate para crear un AssertEquals, el contexto debe ser una clase entity
+//attributeToCompare = atributo a compara entre clases entity
+//mp = atributo que representa entitiesmanager
+//idText = texto de la varible o texto de una operacion para obtener un id de busqueda de un elemento. 
+busqueda ejecutada por el entitiesmanager para la comparacion.
  **]
+[% @template
+operation Class createAssertEquals(attrToCompare:Attribute, mp:Attribute, idText:String ){%]
+assertEquals([%= self.name.firstToLowerCase()%].get[%=attrToCompare.name.firstToUpperCase()%](), [%= mp.name%].get[%= self.name.firstToUpperCase()%]([%= idText%] ).get[%=attrToCompare.name.firstToUpperCase()%]());[%
+}%]
+
+[**Subtemplate para manufacturar y poblar un pojo, el contexto debe ser una clase entity**]
+[% @template
+operation Class manufactureAndPopulatePojo(factory:Attribute){%]
+[%=self.getTypeAsText()%] [%= self.name.firstToLowerCase()%] = [%= factory.name%].manufacturePojo([%=self.getTypeAsText()%].class);
+[%= factory.name%].populatePojo([%= self.name.firstToLowerCase()%]);[%
+}%]
+
+[**Subtemplate para crear parametros de un metodo basado en los getters de un entity**]
+[% @template
+operation Class gettersAsParamsText(){ %]
 [%
-operation Class createAssertEquals(attrToCompare:Attribute, mp:Attribute, idText:String ){
-%]assertEquals([%= self.name.firstToLowerCase()%].get[%=attrToCompare.name.firstToUpperCase()%](), [%= mp.name%].get[%= self.name.firstToUpperCase()%]([%= idText%] ).get[%=attrToCompare.name.firstToUpperCase()%]());[%
+var textParameters:String = "";
+var validAttributes = self.attributes->select(a | a.name<>'id' and not a.datatypeAttribute.isTypeOf(java!ListType));
+		for (va in validAttributes) {
+			textParameters = textParameters + self.name.firstToLowerCase()+ '.' + 'get' + va.name.firstToUpperCase() + '()';
+			if (hasMore) {
+				textParameters = textParameters + ", "; 	
+			}
+		}
+%][%= textParameters %][%
 }%]
