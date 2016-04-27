@@ -103,3 +103,14 @@ operation getMethod(name : String) : java!Method {
 	method.visibility = java!Visibility#public;
 	return method;
 }
+
+/**
+* Retrive attributes annotated with ID for the given entity
+*/
+operation java!Class findId() : Set {
+	var foundId = new OrderedSet;
+	foundId = self.attributes.select(a|a.annotateAttribute.collect(i|i.name).contains("@Id"));
+	return foundId;
+}
+
+

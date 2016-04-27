@@ -6,6 +6,12 @@ operation java!Package entityManager() : java!Class {
 	
 	// Add attributes
 	entityManager.addEntityManagerAttributes();
+	
+	// Add persistence methods
+	for (class : java!Class in self.classes) {
+		entityManager.addEntityManagerMethods(class);
+	}
+	
 	return entityManager;
 }
 
@@ -37,3 +43,58 @@ operation java!Class addEntityManagerAttributes() {
 	entityManager.datatypeAttribute = typeMap.get(entityManager.name);
 	self.attributes.add(entityManager);
 }
+
+operation java!Class addEntityManagerMethods(entity : java!Class) {
+	// Get entitiy object list
+	var getList = new java!Method;
+	getList.name = "get" + entity.name + "s";
+	getList.visibility = java!Visibility#public;
+	getList.datatypeReturn = typeMap.get(entity.name.firstToLowerCase() + "List");
+	self.methods.add(getList);
+	
+	// Add entitiy object 
+	var add = new java!Method;
+	add.name = "add" + entity.name;
+	add.visibility = java!Visibility#public;
+	// Add parameter 
+	var addParameter = new java!Parameter;
+	addParameter.name = entity.name.firstToLowerCase();
+	addParameter.datatypeParameter = typeMap.get(entity.name.firstToLowerCase());
+	add.methodParameters.add(addParameter);
+	self.methods.add(add);
+	
+	// Find annotated ID
+	var foundId = entity.findId();
+	
+	// Edit entity object
+	var edit = new java!Method;
+	edit.name = "edit" + entity.name;
+	edit.visibility = java!Visibility#public;
+	
+	
+	// Edit ID parameters
+	for (attribute : java!Attribute in foundId) {
+		var editParameterId = new java!Parameter;
+		editParameterId.name = attribute.name;
+		editParameterId.datatypeParameter = attribute.datatypeAttribute;
+		edit.methodParameters.add(editParameterId);
+	}
+	// Edit object parameter 
+	var editParameter = new java!Parameter;
+	editParameter.name = entity.name.firstToLowerCase();
+	editParameter.datatypeParameter = typeMap.get(entity.name.firstToLowerCase());
+	edit.methodParameters.add(editParameter);
+	self.methods.add(edit);
+	
+	
+	
+	
+	
+	//public void editCarrito(int id, String name, Client client)
+	
+	//public void deleteCarrito(int id)
+	
+	//public Carrito getCarrito(int id)
+	
+}
+

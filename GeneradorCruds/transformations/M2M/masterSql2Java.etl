@@ -19,7 +19,7 @@ pre {
 rule DataBase2Project
 	transform d : sql!DataBase
 	to p : java!Project {
-		p.name = "Crud";
+		p.name = "co.edu.uniandes.sqlcrud";
 		p.extractTypes();
 		
 		// This package storage the entity mapping
