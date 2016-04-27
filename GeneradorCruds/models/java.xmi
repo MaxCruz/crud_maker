@@ -214,8 +214,8 @@
       </methods>
       <methods name="editClient">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
-        <methodParameters datatypeParameter="//@datatype.4" name="password"/>
-        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
+        <methodParameters datatypeParameter="//@datatype.4" name="password" order="1"/>
+        <methodParameters datatypeParameter="//@datatype.4" name="name" order="2"/>
       </methods>
       <methods name="deleteClient">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
@@ -228,7 +228,7 @@
         <methodParameters datatypeParameter="//@datatype.7" name="producto"/>
       </methods>
       <methods name="editProducto">
-        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
+        <methodParameters datatypeParameter="//@datatype.4" name="name" order="1"/>
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
       </methods>
       <methods name="deleteProducto">
@@ -243,8 +243,8 @@
       </methods>
       <methods name="editCarrito">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
-        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
-        <methodParameters datatypeParameter="//@datatype.5" name="client"/>
+        <methodParameters datatypeParameter="//@datatype.4" name="name" order="1"/>
+        <methodParameters datatypeParameter="//@datatype.5" name="client" order="2"/>
       </methods>
       <methods name="deleteCarrito">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
@@ -258,9 +258,9 @@
       </methods>
       <methods name="editItem">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
-        <methodParameters datatypeParameter="//@datatype.0" name="cantidad"/>
-        <methodParameters datatypeParameter="//@datatype.4" name="name"/>
-        <methodParameters datatypeParameter="//@datatype.7" name="producto"/>
+        <methodParameters datatypeParameter="//@datatype.0" name="cantidad" order="1"/>
+        <methodParameters datatypeParameter="//@datatype.4" name="name" order="2"/>
+        <methodParameters datatypeParameter="//@datatype.7" name="producto" order="3"/>
       </methods>
       <methods name="deleteItem">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
