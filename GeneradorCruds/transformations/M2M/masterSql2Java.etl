@@ -37,7 +37,7 @@ rule DataBase2Project
 		// This package storage the unit tests for entities
 		var testPackage = new java!Package;
 		testPackage.name = "test";
-		testPackage.classes.addAll(p.packages.select(p|p.name == "entities").classes.flatten().collect(e|e.testEntityClass()));
+		testPackage.classes.addAll(p.packages.select(p|p.name == "entities").classes.flatten().reject(e|e.attributes.size() == e.attributes.select(a|a.annotateAttribute.collect(i|i.name).contains("@Id")).size()).collect(e|e.testEntityClass()));
 		p.packages.add(testPackage);
 	}
 

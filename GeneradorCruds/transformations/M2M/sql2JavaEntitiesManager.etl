@@ -11,7 +11,10 @@ operation java!Package entityManager() : java!Class {
 	
 	// Add persistence methods
 	for (class : java!Class in self.classes) {
-		entityManager.addEntityManagerMethods(class);
+	    var foundId = class.findId();
+	    if (class.attributes.size() > foundId.size()) {
+			entityManager.addEntityManagerMethods(class);
+		}
 	}
 	
 	// Register imports
@@ -29,7 +32,7 @@ operation java!Class addEntityManagerAttributes() {
 	persistence.name = "PERSISTENCE_UNIT_NAME";
 	persistence.visibility = java!Visibility#private;
 	persistence.modifier = java!Modifier#staticfinal;
-	persistence.value = "\"MarketPlace-Test\"";
+	persistence.value = "\"ManejadorPersistencia-Test\"";
 	persistence.datatypeAttribute = typeMap.get(sql!DataType#varchar);
 	self.attributes.add(persistence);
 	
