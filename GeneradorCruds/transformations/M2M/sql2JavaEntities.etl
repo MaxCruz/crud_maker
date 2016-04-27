@@ -40,6 +40,7 @@ rule Table2Class
 			imports.add("javax.persistence.PrimaryKeyJoinColumn");
 			attribute.annotateAttribute.add(getAnnotation("@PodamExclude"));
 			imports.add("uk.co.jemos.podam.common.PodamExclude");
+			imports.add("javax.persistence.CascadeType");
 			
 			// Update the name and type of the attribute to reference the related class
 			var tableRef = t.foreignkey.select(f|f.column.collect(c|c.name).flatten().includes(attribute.name)).tableRef;
@@ -67,11 +68,6 @@ rule Table2Class
 				imports.add("java.util.List");
 			}
 		}
-		
-		// Add constructor method to the class
-		var constructor = new java!Method;
-		constructor.name = t.name;
-		c.methods.add(constructor);
 		
 		// Define getters and setters method for each attribute
 		c.methods.addAll(c.attributes.collect(a|a.getMethods()));
@@ -163,7 +159,7 @@ operation annotateOneToMany(mappedBy : String) : java!Annotation {
 	// Define the key value for the map and reference to the element
 	var keyValueFetch = new java!KeyValue;
 	keyValueFetch.key = "mappedBy";
-	keyValueFetch.value = mappedBy;
+	keyValueFetch.value = "\"" + mappedBy + "\"";
 	
 	// Create annotation
 	var oneToMany = getAnnotation("@OneToMany");

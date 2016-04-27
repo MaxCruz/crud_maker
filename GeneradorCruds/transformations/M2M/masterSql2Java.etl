@@ -1,6 +1,7 @@
 import "transformOperations.eol";
 import "sql2JavaEntities.etl";
 import "sql2JavaTest.etl";
+import "sql2JavaEntitiesManager.etl";
 
 pre {
 	"Running ETL".println();
@@ -18,7 +19,7 @@ pre {
 rule DataBase2Project
 	transform d : sql!DataBase
 	to p : java!Project {
-		p.name = "Crud";
+		p.name = "co.edu.uniandes.sqlcrud";
 		p.extractTypes();
 		
 		// This package storage the entity mapping
@@ -30,6 +31,7 @@ rule DataBase2Project
 		// This package manages the persistence
 		var entitiesPackage = new java!Package;
 		entitiesPackage.name = "marketplace";
+		entitiesPackage.classes.add(p.packages.select(p|p.name == "entities").first().entityManager());
 		p.packages.add(entitiesPackage);
 
 		// This package storage the unit tests for entities
