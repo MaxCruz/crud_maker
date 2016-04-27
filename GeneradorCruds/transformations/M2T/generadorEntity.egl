@@ -28,7 +28,8 @@ import [%= importElement.name %];
 	[%}%]
 	
 	public [%= claseEntity.name %]()
-	{}
+	{
+	}
 	
 	[*Agrega los metodos de la clase*]
 	[% for (methodElement in claseEntity.methods) { %]

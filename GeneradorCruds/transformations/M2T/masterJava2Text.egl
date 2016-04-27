@@ -85,6 +85,7 @@ out.println("Creando Manejador de Persisntencia" );
 manejadorPersistencia  = TemplateFactory.load("generadorEntitiesManager.egl");
 manejadorPersistencia.setFormatter(fjava);
 manejadorPersistencia.populate("entitiesManager", entitiesManager);
+manejadorPersistencia.populate("entities", entities);
 manejadorPersistencia.generate(dirPackage(entitiesManager.eContainer().name) + entitiesManager.name +".java");
 
 

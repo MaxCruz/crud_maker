@@ -108,3 +108,12 @@ operation Annotation getTextRepresentationForAnnotationKeyValues():String{
 		}
 	return textParameters;
 }
+/**
+* Selecciona una clase de una Collection (contexto) , dado el nombre de la clase
+* (Util para buscar entities class) 
+*/
+operation Collection selectByName(name:String):Class{
+	 var class : Class = self->select(e | e.name == name)->first();
+	 return class;
+}
+
