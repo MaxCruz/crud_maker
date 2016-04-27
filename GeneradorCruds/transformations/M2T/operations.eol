@@ -53,10 +53,16 @@ operation dirClassPath(): String {
 /**Classifier agrupa DataType y  Class asi que el nombre funciona para cualquiera
 el tipo List es un caso especial*/
 operation Classifier getTextRepresentationAsType():String {
-	var type = self.name; 
+	//Si es una clase o un datatype pesonalizado
+	var type = self.name;
+	//Si es una lista 
 	if (self.isTypeOf(java!ListType) )
 	{
-		type = "List<"+self.datatype.name+">";
+		type = "List<"+self.name+">";
+	}
+	if (self.isTypeOf(java!Primitive) )
+	{
+		type = self.typeName.literal;
 	}
 	return type;
 }
