@@ -12,7 +12,7 @@ operation Class declaration() { %]
 operation Attribute declaration() { %]
 [% 
 var modifier = "";
-var type = self.datatypeAttribute.getTextRepresentationAsType(); 
+var type = self.datatypeAttribute.getTypeAsText(); 
 if (self.modifier <> java!Modifier#none)
 {
 	modifier=" "+self.modifier.literal;
@@ -34,7 +34,7 @@ if (self.modifier <> java!Modifier#none)
 }
 if (self.datatypeReturn.isDefined())
 {
-	returnType=self.datatypeReturn.getTextRepresentationAsType();
+	returnType=self.datatypeReturn.getTypeAsText();
 }
 %]
 [%=self.visibility%] [%=modifier%] [%=returnType%] [%=self.name%]([%=parameters%])
@@ -68,3 +68,11 @@ operation Method annotationsText(){
 	[%}
 }%]
 
+[**SubTemplate para crear un AssertEquals
+//idText = texto de la varible o text de la operacion para obtener un id de busqueda 
+de un elmento en el entitiesmanager para la comparacion
+ **]
+[%
+operation Class createAssertEquals(attrToCompare:Attribute, mp:Attribute, idText:String ){
+%]assertEquals([%= self.name.firstToLowerCase()%].get[%=attrToCompare.name.firstToUpperCase()%](), [%= mp.name%].get[%= self.name.firstToUpperCase()%]([%= idText%] ).get[%=attrToCompare.name.firstToUpperCase()%]());[%
+}%]

@@ -52,7 +52,7 @@ operation dirClassPath(): String {
 
 /**Classifier agrupa DataType y  Class asi que el nombre funciona para cualquiera
 el tipo List es un caso especial*/
-operation Classifier getTextRepresentationAsType():String {
+operation Classifier getTypeAsText():String {
 	//Si es una clase o un datatype pesonalizado
 	var type = self.name;
 	//Si es una lista 
@@ -73,7 +73,7 @@ Retorna los parametros de un metodo en formato de una linea y separados por coma
 operation Method getTextRepresentationForMethodParameters():String{
 	var textParameters:String = "";
 		for (parameter in self.methodParameters) {
-			textParameters = textParameters + parameter.datatypeParameter.getTextRepresentationAsType()+" " +parameter.name;
+			textParameters = textParameters + parameter.datatypeParameter.getTypeAsText()+" " +parameter.name;
 			if (hasMore) {
 				textParameters = textParameters + ", "; 	
 			}

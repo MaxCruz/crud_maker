@@ -72,6 +72,8 @@ for (test in tests)
 	claseTest  = TemplateFactory.load("generadorTest.egl");
 	claseTest.setFormatter(fjava);
 	claseTest.populate("claseTest", test);
+	claseTest.populate("entitiesManager", entitiesManager);
+	claseTest.populate("entities", entities);
 	claseTest.generate(dirPackage(test.eContainer().name) + test.name.firstToUpperCase() + ".java");
 
 }

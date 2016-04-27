@@ -23,27 +23,59 @@ import [%= importElement.name %];
 		[%= attributeElement.declaration()%];
 	[%}%]
 	
+	[%
+	var mp : Attribute = claseTest.attributes->select(a | a.datatypeAttribute.name == entitiesManager.getTypeAsText() )->first();
+	var factory : Attribute = claseTest.attributes->select(a | a.datatypeAttribute.name == 'PodamFactory')->first();
+	%]
+	
 	[*Agrega los metodos de la clase*]
 	[% for (methodElement in claseTest.methods) { %]
+	
 		[*Agrega anotaciones al atributo*]
 		[%= methodElement.annotationsText()%]
 		[%= methodElement.declaration()%]
 		[%if (methodElement.name.startsWith('prepareTest')){%]
 		{
 			[% for (attributeElement in claseTest.attributes) { %]
-				[%if (attributeElement.datatypeAttribute.getTextRepresentationAsType()=='PodamFactory'){%]
+				[%if (attributeElement.datatypeAttribute.getTypeAsText()=='PodamFactory'){%]
 				[%= attributeElement.name%] = new PodamFactoryImpl();
 				[%}%]
 				[%else{%]
-				[%= attributeElement.name%] = new [%= attributeElement.datatypeAttribute.getTextRepresentationAsType()%]();
+				[%= attributeElement.name%] = new [%= attributeElement.datatypeAttribute.getTypeAsText()%]();
 				[%}%]
 			[%}%]
 		}
 		[%}%]
-		[%if (methodElement.name.startsWith('set')){%]
+		[%if (methodElement.name.startsWith('test1') and  methodElement.name.endsWith('Add')){%]
 		{
-			[%var nameAttribute = methodElement.name.substring(3).firstToLowerCase();%]
-			this.[%=nameAttribute%] = [%=nameAttribute%];
+			[%var entityName = methodElement.name.substring(5, (methodElement.name.length()-3)); %]
+			[%var entity = entities.selectByName(entityName); %]
+			//test1 Add [%= entityName%]
+			[%=entity.getTypeAsText()%] [%= entityName.firstToLowerCase()%] = [%= factory.name%].manufacturePojo([%=entity.getTypeAsText()%].class);
+			[%= factory.name%].populatePojo([%= entityName.firstToLowerCase()%]);
+			[%= mp.name%].add[%= entityName%]([%= entityName.firstToLowerCase()%]);
+			
+			[% for (attribute in entity.attributes) {%]
+				[% var idText:String = entityName.firstToLowerCase()+'.getId()';%]
+				[% if (not attribute.datatypeAttribute.isTypeOf(java!ListType)){%]
+			    [%= entity.createAssertEquals(attribute, mp, idText)%]
+			    [%}%]
+			[%}%]
+		}
+		[%}%]
+		[%if (methodElement.name.startsWith('test2')){%]
+		{
+			//test2 Get Singular
+		}
+		[%}%]
+		[%if (methodElement.name.startsWith('test3')){%]
+		{
+			//test3 Edit
+		}
+		[%}%]
+		[%if (methodElement.name.startsWith('test4')){%]
+		{
+			//test4 Delete
 		}
 		[%}%]
 	[%}%]
