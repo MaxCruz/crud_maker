@@ -210,7 +210,13 @@
       <imports name="javax.persistence.Entity"/>
     </classes>
   </packages>
-  <packages name="marketplace"/>
+  <packages name="marketplace">
+    <classes name="MarketPlace">
+      <attributes name="PERSISTENCE_UNIT_NAME" visibility="private" datatypeAttribute="//@datatype.4" modifier="static final" value="MarketPlace-Test"/>
+      <attributes name="emf" visibility="private" datatypeAttribute="//@datatype.17" modifier="static"/>
+      <attributes name="em" visibility="private" datatypeAttribute="//@datatype.18"/>
+    </classes>
+  </packages>
   <packages name="test.java">
     <classes name="ClientTest">
       <annotateClass name="@FixMethodOrder">
@@ -385,4 +391,6 @@
   <datatype xsi:type="mmJavaMinimalista:ListType" name="Item"/>
   <datatype name="MarketPlace"/>
   <datatype name="PodamFactory"/>
+  <datatype name="EntityManagerFactory"/>
+  <datatype name="EntityManager"/>
 </mmJavaMinimalista:Project>

@@ -1,0 +1,39 @@
+
+operation java!Package entityManager() : java!Class {
+	var entityManager = new java!Class;
+	entityManager.name = "MarketPlace";
+	entityManager.visibility = java!Visibility#public;
+	
+	// Add attributes
+	entityManager.addEntityManagerAttributes();
+	return entityManager;
+}
+
+/**
+* This method add the attributes to the persistence manager class
+*/
+operation java!Class addEntityManagerAttributes() {
+	// Add constant attribute for persistence unit
+	var persistence = new java!Attribute;
+	persistence.name = "PERSISTENCE_UNIT_NAME";
+	persistence.visibility = java!Visibility#private;
+	persistence.modifier = java!Modifier#staticfinal;
+	persistence.value = "MarketPlace-Test";
+	persistence.datatypeAttribute = typeMap.get(sql!DataType#varchar);
+	self.attributes.add(persistence);
+	
+	// Add entity manager factory attribute
+	var entityManagerFactory = new java!Attribute;
+	entityManagerFactory.name = "emf";
+	entityManagerFactory.visibility = java!Visibility#private;
+	entityManagerFactory.modifier = java!Modifier#static;
+	entityManagerFactory.datatypeAttribute = typeMap.get(entityManagerFactory.name);
+	self.attributes.add(entityManagerFactory);
+	
+	// Add entity manager attribute
+	var entityManager = new java!Attribute;
+	entityManager.name = "em";
+	entityManager.visibility = java!Visibility#private;
+	entityManager.datatypeAttribute = typeMap.get(entityManager.name);
+	self.attributes.add(entityManager);
+}

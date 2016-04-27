@@ -61,6 +61,19 @@ operation java!Project extractTypes() {
 	factory.name = "PodamFactory";
 	self.datatype.add(factory);
 	typeMap.put("factory", factory);
+	
+	// Add EntityManagerFactory type
+	var entityManagerFactory : java!Classifier = new java!DataType;
+	entityManagerFactory.name = "EntityManagerFactory";
+	self.datatype.add(entityManagerFactory);
+	typeMap.put("emf", entityManagerFactory);
+	
+	// Add EntityManager type
+	var entityManager : java!Classifier = new java!DataType;
+	entityManager.name = "EntityManager";
+	self.datatype.add(entityManager);
+	typeMap.put("em", entityManager);
+	
 }
 
 /**

@@ -196,6 +196,7 @@
         <details xmi:id="_cG3Kfgm2EeaYqaRqn1lxcQ" key="uuid" value="_9k7IoOubEDObKfMbV8vhfw"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" xmi:id="_cG3KgAm2EeaYqaRqn1lxcQ" name="Parameter">
     <eAnnotations xmi:id="_cG3KgQm2EeaYqaRqn1lxcQ" source="genmymodel">
