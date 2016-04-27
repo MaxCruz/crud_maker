@@ -252,22 +252,6 @@
       <methods datatypeReturn="//@datatype.9" name="getCarrito">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
       </methods>
-      <methods datatypeReturn="//@datatype.12" name="getCarritoItems"/>
-      <methods name="addCarritoItem">
-        <methodParameters datatypeParameter="//@datatype.11" name="carritoItem"/>
-      </methods>
-      <methods name="editCarritoItem">
-        <methodParameters datatypeParameter="//@datatype.9" name="carrito"/>
-        <methodParameters datatypeParameter="//@datatype.13" name="item"/>
-      </methods>
-      <methods name="deleteCarritoItem">
-        <methodParameters datatypeParameter="//@datatype.9" name="carrito"/>
-        <methodParameters datatypeParameter="//@datatype.13" name="item"/>
-      </methods>
-      <methods datatypeReturn="//@datatype.11" name="getCarritoItem">
-        <methodParameters datatypeParameter="//@datatype.9" name="carrito"/>
-        <methodParameters datatypeParameter="//@datatype.13" name="item"/>
-      </methods>
       <methods datatypeReturn="//@datatype.14" name="getItems"/>
       <methods name="addItem">
         <methodParameters datatypeParameter="//@datatype.13" name="item"/>
@@ -284,7 +268,7 @@
       <methods datatypeReturn="//@datatype.13" name="getItem">
         <methodParameters datatypeParameter="//@datatype.0" name="id"/>
       </methods>
-      <attributes name="PERSISTENCE_UNIT_NAME" visibility="private" datatypeAttribute="//@datatype.4" modifier="static final" value="&quot;MarketPlace-Test&quot;"/>
+      <attributes name="PERSISTENCE_UNIT_NAME" visibility="private" datatypeAttribute="//@datatype.4" modifier="static final" value="&quot;ManejadorPersistencia-Test&quot;"/>
       <attributes name="emf" visibility="private" datatypeAttribute="//@datatype.17" modifier="static"/>
       <attributes name="em" visibility="private" datatypeAttribute="//@datatype.18"/>
       <imports name="java.util.List"/>
@@ -322,7 +306,7 @@
       <imports name="org.junit.Before"/>
       <imports name="org.junit.Test"/>
       <imports name="static org.junit.Assert.*"/>
-      <imports name="marketplace.Client"/>
+      <imports name="entities.Client"/>
       <imports name="marketplace.MarketPlace"/>
       <imports name="org.junit.FixMethodOrder"/>
       <imports name="org.junit.runners.MethodSorters"/>
@@ -353,7 +337,7 @@
       <imports name="org.junit.Before"/>
       <imports name="org.junit.Test"/>
       <imports name="static org.junit.Assert.*"/>
-      <imports name="marketplace.Producto"/>
+      <imports name="entities.Producto"/>
       <imports name="marketplace.MarketPlace"/>
       <imports name="org.junit.FixMethodOrder"/>
       <imports name="org.junit.runners.MethodSorters"/>
@@ -384,38 +368,7 @@
       <imports name="org.junit.Before"/>
       <imports name="org.junit.Test"/>
       <imports name="static org.junit.Assert.*"/>
-      <imports name="marketplace.Carrito"/>
-      <imports name="marketplace.MarketPlace"/>
-      <imports name="org.junit.FixMethodOrder"/>
-      <imports name="org.junit.runners.MethodSorters"/>
-    </classes>
-    <classes name="CarritoItemTest">
-      <annotateClass name="@FixMethodOrder">
-        <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
-      </annotateClass>
-      <methods name="prepareTest">
-        <annotateMethod name="@Before"/>
-      </methods>
-      <methods name="test1CarritoItemAdd">
-        <annotateMethod name="@Test"/>
-      </methods>
-      <methods name="test2GetCarritoItem">
-        <annotateMethod name="@Test"/>
-      </methods>
-      <methods name="test3CarritoItemEdit">
-        <annotateMethod name="@Test"/>
-      </methods>
-      <methods name="test4CarritoItemDelete">
-        <annotateMethod name="@Test"/>
-      </methods>
-      <attributes name="mp" visibility="private" datatypeAttribute="//@datatype.15"/>
-      <attributes name="factory" visibility="private" datatypeAttribute="//@datatype.16"/>
-      <imports name="uk.co.jemos.podam.api.PodamFactory"/>
-      <imports name="uk.co.jemos.podam.api.PodamFactoryImpl"/>
-      <imports name="org.junit.Before"/>
-      <imports name="org.junit.Test"/>
-      <imports name="static org.junit.Assert.*"/>
-      <imports name="marketplace.CarritoItem"/>
+      <imports name="entities.Carrito"/>
       <imports name="marketplace.MarketPlace"/>
       <imports name="org.junit.FixMethodOrder"/>
       <imports name="org.junit.runners.MethodSorters"/>
@@ -446,7 +399,7 @@
       <imports name="org.junit.Before"/>
       <imports name="org.junit.Test"/>
       <imports name="static org.junit.Assert.*"/>
-      <imports name="marketplace.Item"/>
+      <imports name="entities.Item"/>
       <imports name="marketplace.MarketPlace"/>
       <imports name="org.junit.FixMethodOrder"/>
       <imports name="org.junit.runners.MethodSorters"/>
