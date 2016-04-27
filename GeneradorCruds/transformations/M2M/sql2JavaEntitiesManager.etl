@@ -123,5 +123,6 @@ operation java!Class addMarketPlaceImports() {
 	self.imports.add(getImport("javax.persistence.EntityManagerFactory"));
 	self.imports.add(getImport("javax.persistence.Persistence"));
 	self.imports.add(getImport("javax.persistence.Query"));
+	self.imports.add(getImport("import entities.*"));
 }
 

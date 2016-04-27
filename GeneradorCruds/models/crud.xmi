@@ -292,9 +292,10 @@
       <imports name="javax.persistence.EntityManagerFactory"/>
       <imports name="javax.persistence.Persistence"/>
       <imports name="javax.persistence.Query"/>
+      <imports name="import entities.*"/>
     </classes>
   </packages>
-  <packages name="test.java">
+  <packages name="test">
     <classes name="ClientTest">
       <annotateClass name="@FixMethodOrder">
         <annotationParameters key="MethodSorters.NAME_ASCENDING"/>
