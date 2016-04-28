@@ -1,0 +1,10 @@
+/.metadata
+.DS_Store
+*/xtend-gen/
+*/src-gen/*
+
+*/bin/*
+*.class
+*.jar
+
+runtimeSQL2Java/*
